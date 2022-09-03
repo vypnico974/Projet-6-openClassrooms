@@ -1,45 +1,48 @@
-    async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
-        const photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
-        // et bien retourner le tableau photographers seulement une fois
-        return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
-    }
+ /*  Lecture du json pour extraction des données 
+     2 tabeaux dans data : media et photographers  */
+async function getPhotographers() {
+    const response = await fetch("./data/photographers.json")
+    /* attendre la résolution de la promesse  */
+    const data = await response.json();   
+    console.log(data);
+    return data.photographers; /* récupération tableau de données photographers  */
+    
+}
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+ 
+/* Création de toutes les cards individuellement par la fonction photographerFactory qui se
+ trouve dans photographer.js et affichage dans la section photographer_section */
+async function displayData(photographers) {
+     /*  Récupération de la section où seront affichées les cards */
+    const photographersSection = document.querySelector(".photographer_section");
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
+        /* photographerArticle = chaine de caractères qui va contenir le code HTML d'une card 
+        par la fonction photographerFactory pour chaque appel */
+     
+    /*initiale la variable pour récupérer les données pour carte photographe  */
+    let userCardDOM = "";
+    photographers.forEach((photographer) => {
+        /* pour récupérer du bloc article de chaque photographe */        
+        userCardDOM += photographerFactory(photographer); 
+    });   
+    
+    /* Affichage de toutes les cards dans la section photographersSection */
+    photographersSection.innerHTML = userCardDOM;
 
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
+};
+
+/* Chargement des données et affichage des cards au chargement de la page */
+async function init() {
+    const photographers = await getPhotographers();
+    displayData(photographers);
+
+    /*    const { photographers } = await getPhotographers();
         displayData(photographers);
     };
+    */
+
+
+};
     
-    init();
+init();
     

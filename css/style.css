@@ -27,11 +27,11 @@ h1 {
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    gap: 90px;
     margin-top: 100px;
 }
 
-.photographer_section article {
+.photographer_section article, .photographer_section article a {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -39,12 +39,42 @@ h1 {
     flex-direction: column;
 }
 
+/* Nom du photographe */
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin-bottom: 10px;
 }
-
+/* portrait photographe  */
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    overflow: hidden; 
+    margin: auto;
 }
+/*informations supplémentaires photographes   color: #901C1C;*/
+.photographer_section article p{
+    margin: 0;
+    font-size: 14px;
+}
+.photographer_section a+p{ /* couleur et taille de la localisation    */
+    color: #901C1C;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.photographer_section .bold{ 
+    font-weight: 600;
+}
+.photographer_section .boldLight{ 
+    font-weight: 100;
+    color: 	#DCDCDC;
+}
+.photographer_section article{
+    row-gap: 5px;
+}
+.photographer_section article a {
+    text-decoration: none;
+   
+}
+
