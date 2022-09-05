@@ -1,8 +1,10 @@
-@import url("photographer.css");
+@import url("./photographer.css");
 
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    max-width: 1900px;
+    margin: auto;
 }
 
 
@@ -42,7 +44,7 @@ h1 {
 /* Nom du photographe */
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 2.2em;
     margin-bottom: 10px;
 }
 /* portrait photographe  */
@@ -56,25 +58,31 @@ h1 {
 /*informations supplémentaires photographes   color: #901C1C;*/
 .photographer_section article p{
     margin: 0;
-    font-size: 14px;
+    font-size: 0.9em;
 }
 .photographer_section a+p{ /* couleur et taille de la localisation    */
     color: #901C1C;
-    font-size: 16px;
+    font-size: 1em;
     margin-bottom: 5px;
 }
 .photographer_section .bold{ 
     font-weight: 600;
 }
 .photographer_section .boldLight{ 
-    font-weight: 100;
-    color: 	#DCDCDC;
+    font-weight: 200;
+  /*  color: 	#DCDCDC; */
 }
 .photographer_section article{
     row-gap: 5px;
 }
 .photographer_section article a {
     text-decoration: none;
+   
+}
+.photographer_section article a:focus {
+    outline: solid 2px #901C1C;
+    outline-offset: 2px;
+
    
 }
 

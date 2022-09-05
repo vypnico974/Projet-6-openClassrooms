@@ -1,11 +1,9 @@
 function photographerFactory(data) {
-    // récupérer les valeurs des clés
+    /* récupérer les valeurs des clés */
     const { name, portrait, city, country, tagline, price, id } = data;
     console.log(name);
-    
-  /*  const { name, portrait } = data; */
 
-    // Création card avec les valeurs récupérées
+    /* Création card avec les valeurs récupérées */
     const article = `
         <article>
             <a href= "./photographer.html?id=${id}" title="${name}">
