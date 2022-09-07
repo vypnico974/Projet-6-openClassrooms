@@ -6,6 +6,16 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-header #photograph-data,
+.photograph-header #photograph-picture,
+.photograph-header #contact-button{
+    width: 25%;
 }
 
 .contact_button {
@@ -24,13 +34,16 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
+    display: none;
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    position: absolute;
+    top : 10%;
+    left: 15%;
 }
 
 .modal header {
@@ -40,12 +53,14 @@
 
 .modal header img {
     cursor: pointer;
+    margin-bottom: auto;
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 2.5em;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+    padding-bottom: 20px;
 }
 
 form {
@@ -73,4 +88,27 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+form textarea.inputMessage {
+    height: 150px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.formField{
+    height: fit-content;
+    margin: 0;
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.formField[data-error]::after{
+    content: attr(data-error);
+    display: block;
+}
+
+.formField[data-error=""]::after{
+    content: none;
+    display: none;
 }

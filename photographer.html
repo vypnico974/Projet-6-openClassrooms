@@ -1,37 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />    
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <!-- kit fontawesion pour import d'icône-->
+    <script src="https://kit.fontawesome.com/0b6d538c32.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
-  <body>
+  <body id="body">
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="./index.html">
+        <img src="assets/images/logo.png" class="logo" alt="Fiesheye Home page"/>
+      </a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+    <main id="main" aria-hidden="false">
+      <!--section info et image du photographe ainsi que la modale contact-->
+      <section class="photograph-header">
+        <div id="photograph-data"></div>
+        <div id="contact-button">
+          <button class="contact_button" onclick="displayModal()" id="openModal" aria-label="Contactez Moi" 
+          aria-haspopup="dialog" aria-controls="contact_modal">Contactez-moi</button>
+        </div>        
+        <div id="photograph-picture"></div>
+      </section>
     </main>
-    <div id="contact_modal">
+
+
+     <!-- Modale du formulaire -->
+    <div id="contact_modal" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="contactMe">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" id="closeContactForm" tabindex="0" alt="Bouton de fermeture"/>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+				<form id="contact_form">
+					<div class="formField" id="divFirstName">
+						<label id="labelFirst">Prénom</label>
+            <input 
+            aria-labelledby="labelFirst" 
+            type="text" 
+            id="inputFirstname" 
+            name = "Prénom"
+            required/>
 					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+          <div class="formField" id="divLastName">
+            <label id="labelName">Nom</label>
+            <input 
+            aria-labelledby="labelName" 
+            type="text" 
+            id="inputLastname"
+            name = "Nom"
+            required/>
+          </div>       
+          <div class="formField" id="divEmail">
+            <label id="labelEmail">Email</label>
+            <input 
+            aria-labelledby="labelEmail" 
+            type="email" 
+            name = "Email"
+            required/>
+          </div>
+
+          <div class="formField" id="divMessage">
+            <label id="labelMessage">Votre Message</label>
+            <textarea class="inputMessage" 
+            aria-labelledby="labelMessage" 
+            name = "Message"
+            id="inputMessage"
+            required></textarea>
+          </div>                    
+          <button class="contact_button" id="send">Envoyer</button>
+        </form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
+    <script src="./scripts/pages/photographer.js" type="module"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
