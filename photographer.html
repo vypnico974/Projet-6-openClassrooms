@@ -34,45 +34,58 @@
 			<div class="modal">
 				<header>
           <h2 id="contactMe">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" id="closeContactForm" tabindex="0" alt="Bouton de fermeture"/>
+          <img src="assets/icons/close.svg" onclick="closeModal()" id="closeContactForm" aria-label="Close-Contact-form" tabindex="0" alt="Bouton de fermeture"/>
         </header>
-				<form id="contact_form">
+				<form
+          id="contact_form"
+          action="#"
+          method="post"
+          aria-hidden="true" 
+          >
 					<div class="formField" id="divFirstName">
-						<label id="labelFirst">Prénom</label>
+						<label aria-label="first-name-label" id="labelFirst">Prénom</label>
             <input 
-            aria-labelledby="labelFirst" 
+            aria-label="first name"
             type="text" 
             id="inputFirstname" 
             name = "Prénom"
+            placeholder="exemple: John"
             required/>
+            <span class="first-error"></span>
 					</div>
           <div class="formField" id="divLastName">
-            <label id="labelName">Nom</label>
+            <label aria-label="last-name-label" id="labelName">Nom</label>
             <input 
-            aria-labelledby="labelName" 
+            aria-label="Last name"
             type="text" 
             id="inputLastname"
             name = "Nom"
+            placeholder="exemple: Doe"
             required/>
+            <span class="last-error"></span>
           </div>       
           <div class="formField" id="divEmail">
-            <label id="labelEmail">Email</label>
+            <label aria-label="email-label" id="labelEmail">Email</label>
             <input 
-            aria-labelledby="labelEmail" 
+            aria-label="Email" 
             type="email" 
-            name = "Email"
+            name="Email"
+            id="inputEmail"
+            placeholder="exemple: john.doe@mail.com"
             required/>
+            <span class="email-error"></span>
           </div>
-
           <div class="formField" id="divMessage">
-            <label id="labelMessage">Votre Message</label>
+            <label aria-label="message-label" id="labelMessage">Votre Message</label>
             <textarea class="inputMessage" 
-            aria-labelledby="labelMessage" 
-            name = "Message"
+            aria-label="Your message"
+            name="Message"
             id="inputMessage"
+            placeholder="Veuillez écrire votre message."
             required></textarea>
+            <span class="message-error"></span>
           </div>                    
-          <button class="contact_button" id="send">Envoyer</button>
+          <button type="submit" aria-label="Send" class="contact_button" id="submit">Envoyer</button>
         </form>
 			</div>
 		</div>

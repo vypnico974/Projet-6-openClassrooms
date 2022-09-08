@@ -96,19 +96,28 @@ form textarea.inputMessage {
     width: 100%;
 }
 
-.formField{
-    height: fit-content;
-    margin: 0;
-    color: #901C1C;
-    font-size: 24px;
+/* messages d'erreur  */
+.first-error,
+.last-error,
+.email-error,
+.message-error{
+  font-size: 1.6em;
+  color: red;
+  display: block;
+  margin-bottom: -15px;
+  text-align: left;
+  line-height: 1em;
+  transition: 0.2s;
 }
 
-.formField[data-error]::after{
-    content: attr(data-error);
-    display: block;
+/* encadrer erreur ou validation  */
+.data-validate{
+    border: 2px solid green;
+}
+.data-error{
+    border: 2px solid #e54858;
 }
 
-.formField[data-error=""]::after{
-    content: none;
-    display: none;
-}
+.no-scroll {
+    overflow: hidden;
+  }

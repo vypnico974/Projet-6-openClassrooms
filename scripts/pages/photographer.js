@@ -24,7 +24,3 @@ initPage();
 
 
 
-    /*
-let params = (new URL(document.location)).searchParams;
-let identity = parseInt(params.get('id')); //Parse the photographer's id from the URL
-console.log(identity); */
