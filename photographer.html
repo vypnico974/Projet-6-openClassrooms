@@ -6,7 +6,7 @@
     <link href="./css/style.css" rel="stylesheet" type="text/css" />    
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <!-- kit fontawesion pour import d'icône-->
+    <!-- kit fontawesome pour import d'icône-->
     <script src="https://kit.fontawesome.com/0b6d538c32.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
@@ -21,17 +21,51 @@
       <section class="photograph-header">
         <div id="photograph-data"></div>
         <div id="contact-button">
-          <button class="contact_button" onclick="displayModal()" id="openModal" aria-label="Contactez Moi" 
+          <button class="contact_button" onclick="displayModal()" id="openModal" aria-label="Contactez Me" 
           aria-haspopup="dialog" aria-controls="contact_modal">Contactez-moi</button>
         </div>        
         <div id="photograph-picture"></div>
       </section>
+
+     <!-- Section médias du photographe -->
+     <section class="media-section">
+      <!--menu filtre-->
+      <div class="menuFilter">
+        <label id="labelTri">Trier par</label>
+        <ul id="listFilters" role="listbox">
+          <li id="firstSort" aria-selected="true" aria-checked="true" role="listitem">
+            <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
+          </li>
+          <li>
+            <!-- Flèche bas du menu pour développer les options -->
+            <span id="arrowDown" class="visible" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+              <i class="fa-solid fa-angle-down fa-lg"></i>
+            </span>
+            <!-- Flèche haut du menu pour rétracter les options -->
+            <span id="arrowUp" class="hidden" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="true">
+              <i class="fa-solid fa-angle-up fa-lg"></i>
+            </span>
+          </li>            
+          <li class="hidden" id="secondSort">
+            <button class="listButton spacing" id="btnSortDate" aria-labelledby="labelTri">Date</button>
+          </li>
+          <li class="hidden" id="thirdSort">
+            <button class="listButton spacing" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
+          </li>
+        </ul>
+      </div>
+      <!--Affichage des médias photographe-->
+      <div id="medias"></div>  
+    </section>
+    <div id="priceLikes"></div>
+
+
     </main>
 
 
      <!-- Modale du formulaire -->
     <div id="contact_modal" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
-			<div class="modal">
+			<div class="modalBground">
 				<header>
           <h2 id="contactMe">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" id="closeContactForm" aria-label="Close-Contact-form" tabindex="0" alt="Bouton de fermeture"/>
@@ -49,7 +83,9 @@
             type="text" 
             id="inputFirstname" 
             name = "Prénom"
+            minlength="2" 
             placeholder="exemple: John"
+            aria-required=true
             required/>
             <span class="first-error"></span>
 					</div>
@@ -60,7 +96,9 @@
             type="text" 
             id="inputLastname"
             name = "Nom"
+            minlength="2" 
             placeholder="exemple: Doe"
+            aria-required=true
             required/>
             <span class="last-error"></span>
           </div>       
@@ -72,6 +110,7 @@
             name="Email"
             id="inputEmail"
             placeholder="exemple: john.doe@mail.com"
+            aria-required=true
             required/>
             <span class="email-error"></span>
           </div>
@@ -81,7 +120,9 @@
             aria-label="Your message"
             name="Message"
             id="inputMessage"
+            minlength="10" 
             placeholder="Veuillez écrire votre message."
+            aria-required=true
             required></textarea>
             <span class="message-error"></span>
           </div>                    

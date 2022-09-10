@@ -1,3 +1,4 @@
+/*  imports fonctions */
 import {getPhotographers} from "../utils/dataEnter.js";
 import{displayData} from "../utils/ui.js";
 

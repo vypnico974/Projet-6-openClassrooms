@@ -1,11 +1,13 @@
 /*  constantes DOM  */
 const body = document.getElementById("body");
+const openModal = document.getElementById("openModal");
 const modal = document.getElementById("contact_modal");
 const form = document.getElementById("contact_form");
 const first = document.getElementById("inputFirstname");
 const last = document.getElementById("inputLastname");
 const email = document.getElementById("inputEmail");
 const message = document.getElementById("inputMessage");
+const closeContactForm = document.getElementById("closeContactForm");
 const messagesError = {
     lastNameError: 'Veuillez entrer 2 caractères ou plus le nom.',
     firstNameError: 'Veuillez entrer 2 caractères ou plus pour le prénom.',
@@ -22,11 +24,9 @@ let responses = {
       message: "",
     }   
   }
-
-
 /*  modale contact ouverture  */
 function displayModal() {   
-   	modal.style.display = "block";  /* ouverture de la modale  */
+   	
 
     /* récupérer le nom dans le titre h1 de la page */
     let firstName = document.querySelector("h1.firstName").innerText;
@@ -34,6 +34,9 @@ function displayModal() {
     const focusElement = document.querySelectorAll("#contact_modal input, #contact_modal textarea, #contact_modal  img, #contact_modal button");
     const firstElement = focusElement[0]; 
     const lastElement = focusElement[(focusElement.length - 1)];
+
+    closeContactForm.focus();
+    modal.style.display = "block";  /* ouverture de la modale  */
     
     /* ajout nom photographe dans le titre de la modale */
     document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;
@@ -41,7 +44,13 @@ function displayModal() {
     /* accessibilité modale, body et main  */
     document.getElementById("main").ariaHidden = "true";
     document.getElementById("contact_modal").ariaHidden = "false";
-    body.classList.add("no-scroll");
+
+
+    /*********** problème scroll à cherche solution ****************************/
+    // body.classList.add("no-scroll");
+    /************************************************************************** */
+
+
     /* accessibilité modale par la touche echap */
     document.getElementById("contact_modal").focus(); 
     /* accessibilité gestion de la navigation au clavier avec tab  */
@@ -51,7 +60,8 @@ function displayModal() {
             e.preventDefault();
             closeModal();            
         }else if(current == lastElement){
-            if(!e.shiftKey && e.key === "Tab"){
+           /* shiftkey touche MAJ */
+            if(!e.shiftKey && e.key === "Tab"){ 
                 e.preventDefault();
                 document.getElementById(firstElement.id).focus();
             }
@@ -73,10 +83,14 @@ function closeModal() {
     /* accessibilité modale, body et  main  */
     document.getElementById("main").ariaHidden = "false";
     document.getElementById("contact_modal").ariaHidden = "true";
-    body.classList.remove("no-scroll");
+
+    /***************  problème scroll à cherche solution  ***********/
+    //body.classList.remove("no-scroll");
+    /***************************************************************/
+
     /* accessibilité modale par la touche echap */
     document.getElementById("openModal").focus();
-    location.reload();
+   // location.reload();
 
 }
 
@@ -178,7 +192,7 @@ function validateForm(){
         console.log("les champs saisies:",responses);       
         closeModal();
         /*  pour réinitialiser les variables après confirmation de la réservation */
-        location.reload(); 
+       location.reload(); 
     }
 }
 

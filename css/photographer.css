@@ -1,7 +1,4 @@
-#contact_modal {
-    display: none;
-}
-
+/***  patie en-tête photographe  ****/
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -31,7 +28,13 @@
     cursor: pointer;
 }
 
-.modal {
+/***** partie modal *******************/
+
+#contact_modal {
+    display: none;
+}
+
+.modalBground {
     border-radius: 5px;
     background-color: #DB8876;
     display: none;
@@ -41,23 +44,23 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    position: absolute;
+    position:absolute;
     top : 10%;
     left: 15%;
 }
 
-.modal header {
+.modalBground header {
     justify-content: space-between;
     width: 100%;
 }
 
-.modal header img {
+.modalBground header img {
     cursor: pointer;
     margin-bottom: auto;
 }
 
-.modal header h2 {
-    font-size: 2.5em;
+.modalBground header h2 {
+    font-size: 3em;
     font-weight: normal;
     text-align: left;
     padding-bottom: 20px;
@@ -121,3 +124,156 @@ form textarea.inputMessage {
 .no-scroll {
     overflow: hidden;
   }
+
+
+/**** partie media ************************/
+.media-section{
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#medias{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 50px;
+    justify-content: space-between;
+    padding-bottom: 70px;
+}
+
+.contentMedia{
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.articleMedia{
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    row-gap: 15px;
+    height: fit-content;
+}
+
+
+
+/* Conteneur du label et des boutons de tri */
+.menuFilter{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    height: fit-content;
+}
+
+.menuFilter label{
+    font-weight: 700;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+/* Éléments de la liste de tri */
+ul{
+    list-style-type: none;
+    width: fit-content;
+    margin: 0;
+    background-color: #901C1C;
+    border-radius: 5px;
+    min-width: 150px;
+    padding: 0px 10px;   
+    height: fit-content; 
+    user-select: none;
+    position: relative;
+}
+
+.listButton{
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 1.1em;
+    color: white;
+    padding: 10px;
+    height: 50px;
+    border: none;
+    background-color: #901C1C;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+span#arrowDown, span#arrowUp{
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+#arrowDown i, #arrowUp i{
+    cursor: pointer;
+}
+/* pour afficher les 2 lignes blanches du menu */
+#thirdSort, #secondSort {
+    border-top: solid 1px white;
+}
+
+
+
+
+/* Gestion de l'affichage des éléments (flèches et boutons) */
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+.titleMedia{
+    color: #901C1C;
+    display: flex;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+    align-items: center;   
+}
+
+.likes{
+    color: #901C1C;
+    font-weight: 600;
+    display: flex;
+    column-gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;   
+}
+
+#priceLikes{
+    background-color:#D3573C;
+    position: fixed;
+    bottom: 0;
+    right: 25px;
+    padding: 0 20px;
+    width: 300px;
+    font-weight: 600;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+
+#countLikes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
