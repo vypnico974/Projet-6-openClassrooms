@@ -3,7 +3,7 @@ export function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
     console.log("./assets/images/Photographers_ID_photos/"+portrait);
 
-    /* Création card avec les valeurs récupérées */
+    /* Création cartes avec les valeurs récupérées */
     const article = `
         <article>
             <a href= "./photographer.html?id=${id}" title="${name}">

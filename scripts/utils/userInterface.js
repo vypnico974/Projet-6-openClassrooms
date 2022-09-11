@@ -37,8 +37,9 @@ export function displayHeaderPhotograph(data, idPhotographer){
     divData.innerHTML = `
         <h1 class="firstName">${name}</h1>
         <p class="location bold">${city}, ${country}</p>
-        <p class="smallSpacing">${tagline}</p>`;
-    divPicture.innerHTML = `<img src="./assets/images/Photographers_ID_photos/${portrait}" class="portrait" alt="${name}">`;
+        <p>${tagline}</p>`;
+    divPicture.innerHTML = `<img src="./assets/images/Photographers_ID_photos/${portrait}"
+                             class="portrait" alt="${name}">`;
 }
 
 
@@ -53,8 +54,8 @@ export function displayMedia(medias, firstName, sortBy,){
     du tri sélectionné pour inverser l'ordre des options */
 
     switch (sortBy) {
-
-        // Tri décroissant sur les likes du média, inverser les opérateurs de comparaison pour passer en tri croissant
+        /* Tri décroissant sur les likes du média.
+        IL faut inverser les opérateurs de comparaison pour passer en tri croissant */
         case "Likes":
             sortedMedias = medias.sort(function(a, b) {
                 if (a.likes < b.likes) {
@@ -62,13 +63,13 @@ export function displayMedia(medias, firstName, sortBy,){
                 } else if(a.likes > b.likes){
                     return -1;
                 }else{
-                    return 0;
+                    return 0; /* pas de tri */
                 }
             });
             currentParent = document.getElementById("btnSortLikes").parentElement.id;
             break;
 
-        // Tri décroissant sur la date du média
+        /* Tri décroissant sur la date du média */
         case "Date":
             sortedMedias = medias.sort(function(a, b) {
                 a = new Date(a.date);
@@ -78,13 +79,13 @@ export function displayMedia(medias, firstName, sortBy,){
                 } else if(a > b){
                     return -1;
                 }else{
-                    return 0;
+                    return 0; /* pas de tri */
                 }
             });
             currentParent = document.getElementById("btnSortDate").parentElement.id;
             break;
 
-        // Tri croissant sur le nom du média
+        /* Tri croissant nom média*/
         case "Title":
             sortedMedias = medias.sort(function(a, b) {
                 if (a.title > b.title) {
@@ -92,13 +93,13 @@ export function displayMedia(medias, firstName, sortBy,){
                 } else if(a.title < b.title){
                     return -1;
                 }else{
-                    return 0;
+                    return 0; /* pas de tri */
                 }
             });
             currentParent = document.getElementById("btnSortTitle").parentElement.id;
             break;
             
-        // Tri par défaut positionné sur les likes, tri décroissant
+        /* défaut tri décroissant like */
         default:
             sortedMedias = medias.sort(function(a, b) {
                 if (a.likes < b.likes) {
@@ -106,7 +107,7 @@ export function displayMedia(medias, firstName, sortBy,){
                 } else if(a.likes > b.likes){
                     return -1;
                 }else{
-                    return 0;
+                    return 0; /* pas de tri */
                 }
             });
             currentParent = document.getElementById("btnSortLikes").parentElement.id;
@@ -115,53 +116,54 @@ export function displayMedia(medias, firstName, sortBy,){
 
    // console.log("currentParent:",currentParent);
 
-    // Réorganisation de la liste de tri
+    /*  liste de tri de temporaire */
     temporary = document.getElementById("firstSort").innerHTML;
     document.getElementById("firstSort").innerHTML = document.getElementById(currentParent).innerHTML;
     document.getElementById(currentParent).innerHTML = temporary;
 
-    // Ajout des fonctions déclenchées par le clic sur les boutons du menu de tri.
-    document.querySelector("#btnSortLikes").addEventListener("click", () => {
+    /*ecoute évenement clic pour les fonctions de tries */
+    document.getElementById("btnSortLikes").addEventListener("click", () => {
        displayMedia(sortedMedias, firstName, "Likes");
     });
-    document.querySelector("#btnSortDate").addEventListener("click", () => {
+    document.getElementById("btnSortDate").addEventListener("click", () => {
        displayMedia(sortedMedias, firstName, "Date");
     });
-    document.querySelector("#btnSortTitle").addEventListener("click", () => {
+    document.getElementById("btnSortTitle").addEventListener("click", () => {
        displayMedia(sortedMedias, firstName, "Title");
     });
 
     
-    // Boucle de création des cards
+    /* cartes médias  */
     for (const mediaItem of sortedMedias) {
         let mediaCard = new MediaFactory(mediaItem, firstName);   
         articlesList += mediaCard.article;
     }
-
-    // Affichage des cartes dans le bloc médias
-    divMedias.innerHTML = articlesList;      
-
-
+    /* Affichage des cartes dans le bloc médias */
+    divMedias.innerHTML = articlesList;    
 }
 
 /* paramètres : les médias, prix par jour et Id du photographe  */
 export function displayPrice(medias, price, id){
+    /*  mes medias du photographes */
     const mediasList = medias.filter(media => media.photographerId == id);
+    /*  variable Dom*/
     let content = document.getElementById("priceLikes");
+    /* initialer le compteur */
     let likesCount = 0;
+    /*  incrémenter les likes de chaque media */
     for (const media of mediasList) {
         likesCount += media.likes;
     }
-    /* récupération du bloc prix et like, utilisation icône fontawesome coeur */
+    /* bloc prix et like, utilisation icône fontawesome coeur */
     content.innerHTML = `<div id="countLikes">
                             <p>${likesCount}</p>
                             <i class="fa-solid fa-heart"></i>
-                         </div> 
-                         <p>${price}€ / jour</p>`;
+                        </div> 
+                        <p>${price}€ / jour</p>`;
 }
 
 
-/* affichage menu trie  */
+/* gestion de l'affichage menu trie  */
  export function displayMenuFilters(){
     /* flèche haut */
     document.querySelector("#arrowUp").classList.toggle('visible');
@@ -182,3 +184,34 @@ export function displayPrice(medias, price, id){
     document.querySelector("#thirdSort").classList.toggle('hidden');
 }
 
+
+/* imcrémenter du nombre de like  */
+export function addLike(){
+    /*récupère le nombre de like indiqué à coté du coeur cliqué et
+    le stock dans une variable  */
+    let current = parseInt(this.firstElementChild.innerText);
+    this.firstElementChild.innerText = current + 1;
+    /* suppression de l'évènement du click pour ajouter un like */
+    this.removeEventListener("click", addLike);
+    /* ajout de l'évènement du click pour soustraire un like */
+    this.addEventListener("click", removeLike);
+    /* Incrémenter le total de likes(bas de page) */
+    let currentTotal = parseInt(document.getElementById("countLikes").firstElementChild.innerText);
+    /*afficher le nombre total de like  */
+    document.getElementById("countLikes").firstElementChild.innerText = currentTotal + 1;
+}
+/* décrémenter du nombre de like  */
+function removeLike(){
+    /*récupère le nombre de like indiqué à coté du coeur cliqué et
+    le stock dans une variable  */
+    let current = parseInt(this.firstElementChild.innerText);
+    this.firstElementChild.innerText = current - 1;
+     /* suppression de l'évènement du click pour soustraire un like */
+    this.removeEventListener("click", removeLike);
+    /* ajouter de l'évènement du click pour ajouter un like */
+    this.addEventListener("click", addLike);
+    /* Incrémenter le total de likes(bas de page) */
+    let currentTotal = parseInt(document.getElementById("countLikes").firstElementChild.innerText);
+     /*afficher le nombre total de like  */
+    document.getElementById("countLikes").firstElementChild.innerText = currentTotal - 1;
+}

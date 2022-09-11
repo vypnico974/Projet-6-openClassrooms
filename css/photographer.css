@@ -241,7 +241,7 @@ span#arrowDown, span#arrowUp{
     align-items: center;   
 }
 
-.likes{
+.totalLikes{
     color: #901C1C;
     font-weight: 600;
     display: flex;

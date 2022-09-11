@@ -11,7 +11,7 @@ export default class Media{
                              ${mediaContent}
                             </a>                            
                             <p class="titleMedia">${this.title}</p>
-                                <div class="likes" aria-label="likes">
+                            <div class="totalLikes" aria-label="likes">
                                 <p>${this.likes}</p>
                                 <i class="fa-solid fa-heart fa-lg"></i>
                             </div>

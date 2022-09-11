@@ -24,10 +24,20 @@ let responses = {
       message: "",
     }   
   }
-/*  modale contact ouverture  */
-function displayModal() {   
-   	
 
+ /* ecoute évènement clic pour ouverture de la modale */
+document.getElementById("openModal").addEventListener("click", (e) =>{
+    e.preventDefault();
+    displayModal(e);
+});
+ /* ecoute évènement clic pour fermeture de la modale */
+ document.getElementById("closeContactForm").addEventListener("click", (e) =>{
+    closeModal(e);
+});
+
+/*  modale contact ouverture  */
+function displayModal() {  
+      
     /* récupérer le nom dans le titre h1 de la page */
     let firstName = document.querySelector("h1.firstName").innerText;
     /* les champs de saisies du formulaire sont focus */
@@ -36,7 +46,7 @@ function displayModal() {
     const lastElement = focusElement[(focusElement.length - 1)];
 
     closeContactForm.focus();
-    modal.style.display = "block";  /* ouverture de la modale  */
+    modal.style.display = "flex";  /* ouverture de la modale  */
     
     /* ajout nom photographe dans le titre de la modale */
     document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;
@@ -78,8 +88,6 @@ function displayModal() {
 /* fermeture de la modale  */
 function closeModal() {
     modal.style.display = "none";
-    /* réinitialisation du formulaire */
-    document.forms["contact_form"].reset();
     /* accessibilité modale, body et  main  */
     document.getElementById("main").ariaHidden = "false";
     document.getElementById("contact_modal").ariaHidden = "true";
@@ -114,6 +122,7 @@ function validateFirst() {
     first.classList.remove("data-error"); 
     first.classList.add("data-validate");
     return true
+
 }
 
 /* vérification du nom */

@@ -1,21 +1,25 @@
-/* imorts fonctions  */
-import {getPhotographers} from "../utils/dataEnter.js";
-import {getMedia} from "../utils/dataEnter.js";
-import {getUrl} from "../utils/ui.js";
-import {displayHeaderPhotograph} from "../utils/ui.js";
-import {displayMedia} from "../utils/ui.js";
-import {displayPrice} from "../utils/ui.js";
-import {displayMenuFilters} from "../utils/ui.js";
+/* imports fonctions  */
+import {getPhotographers} from "../utils/dataConnection.js";
+import {getMedia} from "../utils/dataConnection.js";
+import {getUrl} from "../utils/userInterface.js";
+import {displayHeaderPhotograph} from "../utils/userInterface.js";
+import {displayMedia} from "../utils/userInterface.js";
+import {displayPrice} from "../utils/userInterface.js";
+import {displayMenuFilters} from "../utils/userInterface.js";
+import {addLike} from "../utils/userInterface.js";
+
+
+
 
 async function initPage(){
-    // Récupération de l'ID du photographge via l'URL   
+    /* Id du photographge via l'URL */ 
     let identity = getUrl();
-    // Chargement des données photographe et médiass de cet id
+    /* données photographe et médias du photographe(id) */
     const photographData = await getPhotographers();
     const mediaData = await getMedia();
-     // Récupération du prénom et prix du photographe
+    /* prénom et prix du photographe */
      const photographer = photographData.filter(photograph => photograph.id == identity);
-     /* nécessaire uniquement le nom pour le répertoires des médias  */
+     /* pour le répertoires des médias  */
      const firstName = photographer[0].name.split(' ')[0];
      const price = photographer[0].price;
     // console.log("data un photographe:",photographer);
@@ -23,18 +27,37 @@ async function initPage(){
      /* Filtrage des medias */
      const photographerMedias = mediaData.filter(media => media.photographerId == identity)
 
-     console.log("les médias :",photographerMedias );
+     //console.log("les médias :",photographerMedias );
 
+     /* affichage en-tête du photographe , ces médias,  like et prix  */
      displayHeaderPhotograph(photographData, identity);
      displayMedia(photographerMedias, firstName, null);
      displayPrice(photographerMedias, price, identity);
 
 
-    /* Gestion du clic sur la flèche pour étendre/réduire la liste de filtres */
+    /* Gestion du clic du menu filtre par la flèche l' étendre/réduires */
     document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
     document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
-     
 
+    /*écoute évènement touche entrée clavier(Keycode 13) pour étendre/réduire 
+    le menu des filtres  par les flèches haut et bas*/
+    document.querySelector("#arrowDown").addEventListener("keyup", (e) =>{
+        if (e.keyCode == "13"){
+            displayMenuFilters();
+        }
+    });
+    document.querySelector("#arrowUp").addEventListener("keyup", (e) =>{
+        if (e.keyCode == "13"){
+            displayMenuFilters();
+        }
+    });
+
+     /* écoute évènement clic icone coeurs de chaque cartes  pour incrémenter le nombre
+     total de like  */
+     let listDivLike = document.querySelectorAll("div.totalLikes");
+     for (const like of listDivLike) {
+         like.addEventListener("click", addLike);
+     }    
 }
 
 initPage();
