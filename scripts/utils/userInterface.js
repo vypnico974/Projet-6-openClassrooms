@@ -3,6 +3,8 @@ import {photographerFactory} from "../factories/photographer.js";
 /* import class  */
 import MediaFactory from "../factories/mediaFactory.js";
 
+let lightbox = null;
+
 
 /* Création de toutes les cards individuellement par la fonction photographerFactory qui se
  trouve dans photographer.js et affichage dans la section photographer_section */
@@ -43,8 +45,9 @@ export function displayHeaderPhotograph(data, idPhotographer){
 }
 
 
-/* paramètres : les medias du photographe, son prénom et le trie selectionné */
-export function displayMedia(medias, firstName, sortBy,){
+/* paramètres : les medias du photographe, son prénom et le trie selectionné
+ainsi que les lien pour la lightbox */
+export function displayMedia(medias, firstName, sortBy, lightbox){
     /* bloc pour afficher les médias */
     const divMedias = document.getElementById("medias"); 
     let articlesList = ""; /*code HTML pour les articles medias*/
@@ -123,13 +126,13 @@ export function displayMedia(medias, firstName, sortBy,){
 
     /*ecoute évenement clic pour les fonctions de tries */
     document.getElementById("btnSortLikes").addEventListener("click", () => {
-       displayMedia(sortedMedias, firstName, "Likes");
+       displayMedia(sortedMedias, firstName, "Likes",lightbox);
     });
     document.getElementById("btnSortDate").addEventListener("click", () => {
-       displayMedia(sortedMedias, firstName, "Date");
+       displayMedia(sortedMedias, firstName, "Date",lightbox);
     });
     document.getElementById("btnSortTitle").addEventListener("click", () => {
-       displayMedia(sortedMedias, firstName, "Title");
+       displayMedia(sortedMedias, firstName, "Title",lightbox);
     });
 
     
@@ -139,7 +142,19 @@ export function displayMedia(medias, firstName, sortBy,){
         articlesList += mediaCard.article;
     }
     /* Affichage des cartes dans le bloc médias */
-    divMedias.innerHTML = articlesList;    
+    divMedias.innerHTML = articlesList; 
+    
+     /* Gestion de la lightbox sur le lien de chaque média */
+     let listMediaLinks = document.querySelectorAll("a.mediaLink");
+     lightbox.mediasList = sortedMedias;
+     for (const link of listMediaLinks) {
+         link.addEventListener("click", (e) => {
+            /* récupére l'id du media cliqué stocké dans le dataset
+               puis lancer la lighbox  */
+            lightbox.launch(e.currentTarget.dataset.id);
+         });
+     }
+
 }
 
 /* paramètres : les médias, prix par jour et Id du photographe  */
@@ -159,12 +174,16 @@ export function displayPrice(medias, price, id){
                             <p>${likesCount}</p>
                             <i class="fa-solid fa-heart"></i>
                         </div> 
-                        <p>${price}€ / jour</p>`;
+                        <p>${price}€ / jour</p>`;      
 }
 
 
 /* gestion de l'affichage menu trie  */
  export function displayMenuFilters(){
+    /* classList.toggle : dans notre cas, 1 seul argument est présent, donc
+     change la présence d'une classe dans  la liste. Si la classe existe,
+      alors la supprime et renvoie false, dans le cas inverse,
+       ajoute cette classe et retourne true.  */
     /* flèche haut */
     document.querySelector("#arrowUp").classList.toggle('visible');
     document.querySelector("#arrowUp").classList.toggle('hidden');
@@ -215,3 +234,89 @@ function removeLike(){
      /*afficher le nombre total de like  */
     document.getElementById("countLikes").firstElementChild.innerText = currentTotal - 1;
 }
+
+
+
+/* vérification du prénom */
+export function validateFirst(first, messagesError) {    
+    /* expressions régulières(regex) /^ pour début   $/ pour fin 
+    [A-zÀ-ú-] les lettres minuscule et majuscule avec accent,tiret et apostrophe sont possible 
+    {2,} minimun 2 autorisés    */
+    const regex = /^[A-zÀ-ú-']{2,}$/;
+    if (!regex.test(first.value)) {
+        /* affichage message d'erreur et encadrer d'erreur */
+        document.querySelector(".first-error").innerText =
+        messagesError.firstNameError; 
+        first.classList.add("data-error");
+        first.classList.remove("data-validate"); 
+        return false
+    }
+    /* pas de message d'erreur et encadrer de validation */
+    document.querySelector(".first-error").innerText  = "";
+    first.classList.remove("data-error"); 
+    first.classList.add("data-validate");
+    return true
+
+}
+
+/* vérification du nom */
+export function validateLast(last,messagesError) {
+    /* supprime n’importe quel symbole d’espacement, autorise les noms à particule   */
+    const space = last.value.replace(/\s+/g, '') 
+    /* expressions régulières(regex) /^ pour début   $/ pour fin 
+    [A-zÀ-ú-] les lettres minuscule et majuscule avec accent,tiret et apostrophe sont possible 
+    {2,} minimun 2 autorisés */             
+    const regex = /^[A-zÀ-ú-']{2,}$/;
+    if (!regex.test(space)) {
+        /* affichage message d'erreur et encadrer d'erreur */
+        document.querySelector(".last-error").innerText =
+        messagesError.lastNameError; 
+        last.classList.add("data-error");
+        last.classList.remove("data-validate"); 
+        return false
+    }
+    /* pas de message d'erreur et encadrer de validation */
+    document.querySelector(".last-error").innerText  = "";
+    last.classList.remove("data-error"); 
+    last.classList.add("data-validate");
+    return true
+}
+
+/*  vérification format email   */
+export function validateEmail(email,messagesError) {
+    /* caractère alphanumerique (sans accent) avant et après le "@" et le point  */
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+    if (!regex.test(email.value)) {
+       /* affichage message d'erreur et encadrer d'erreur */
+       document.querySelector(".email-error").innerText =
+       messagesError.emailError; 
+       email.classList.add("data-error");
+       email.classList.remove("data-validate"); 
+       return false
+    }
+    /* pas de message d'erreur et encadrer de validation */
+    document.querySelector(".email-error").innerText  = "";
+    email.classList.remove("data-error"); 
+    email.classList.add("data-validate");
+    return true
+}
+
+/*  vérification format email   */
+export function validateMessage(message,messagesError) {
+    /* minimum 10 caractères */
+    if (message.value.length < 10) {
+       /* affichage message d'erreur et encadrer d'erreur */
+       document.querySelector(".message-error").innerText =
+       messagesError.messageError; 
+       message.classList.add("data-error");
+       message.classList.remove("data-validate"); 
+       return false
+    }
+    /* pas de message d'erreur et encadrer de validation */
+    document.querySelector(".message-error").innerText  = "";
+    message.classList.remove("data-error"); 
+    message.classList.add("data-validate");
+    return true
+}
+
+

@@ -29,38 +29,64 @@
 
      <!-- Section médias du photographe -->
      <section class="media-section">
+
       <!--menu filtre-->
       <div class="menuFilter">
         <label id="labelTri">Trier par</label>
         <ul id="listFilters" role="listbox">
           <li id="firstSort" aria-selected="true" aria-checked="true" role="listitem">
-            <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
+            <button class="listButton" id="btnSortLikes" aria-labelledby="Order by">Popularité</button>          
           </li>
           <li>
-            <!-- Flèche bas du menu pour développer les options -->
+            <!-- Flèche bas pour développer les options -->
             <span id="arrowDown" class="visible" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
-              <i class="fa-solid fa-angle-down fa-lg"></i>
+              <!--icône fontawesome flèche bas-->
+              <i class="fa-solid fa-angle-down fa-lg"></i> 
             </span>
-            <!-- Flèche haut du menu pour rétracter les options -->
+            <!-- Flèche haut pour réduire les options -->
             <span id="arrowUp" class="hidden" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="true">
+              <!--icône fontawesome flèche haut-->
               <i class="fa-solid fa-angle-up fa-lg"></i>
             </span>
           </li>            
           <li class="hidden" id="secondSort">
-            <button class="listButton spacing" id="btnSortDate" aria-labelledby="labelTri">Date</button>
+            <button class="listButton" id="btnSortDate" aria-labelledby="labelTri">Date</button>
           </li>
           <li class="hidden" id="thirdSort">
-            <button class="listButton spacing" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
+            <button class="listButton" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
           </li>
         </ul>
       </div>
-      <!--Affichage des médias photographe-->
+
+      <!--Affichage des médias du photographe-->
       <div id="medias"></div>  
+
     </section>
+
+    <!--Affichage like et prix du photographe-->
     <div id="priceLikes"></div>
-
-
+    
     </main>
+
+      <!-- lightbox -->
+    <div id="lightbox" tabindex="-1" role="dialog" aria-hidden="true"
+          aria-modal="true" aria-label="image closeup view">
+      <div id="contentLightbox">
+        <button class="previousMedia lightboxIcon" id="previousMedia"
+         aria-label="previous image">
+            <i class="fa-solid fa-angle-left fa-4x"></i>
+        </button>
+        <div id="divMediaLightbox"></div>
+        <button class="nextMedia lightboxIcon" id="nextMedia" 
+         aria-label="next image">
+           <i class="fa-solid fa-angle-right fa-4x"></i>
+        </button>
+        <button class="closeLightbox lightboxIcon" id="closeLightbox"
+         aria-label="close dialog">
+           <i class="fa-solid fa-xmark fa-4x"></i>
+        </button>
+      </div>
+    </div>
 
 
      <!-- Modale du formulaire -->
@@ -68,7 +94,7 @@
 			<div class="modalBground">
 				<header>
           <h2 id="contactMe">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="closeContactForm" aria-label="Close-Contact-form" tabindex="0" alt="Bouton de fermeture"/>
+          <img src="assets/icons/close.svg" id="closeContactForm" aria-label="Close Contact form" tabindex="0" alt="Bouton de fermeture"/>
         </header>
 				<form
           id="contact_form"
@@ -131,6 +157,6 @@
 			</div>
 		</div>
     <script src="./scripts/pages/photographer.js" type="module"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/contactForm.js" type="module"></script>
   </body>
 </html>

@@ -8,6 +8,6 @@ async function init() {
     const photographers = await getPhotographers();
     displayData(photographers);
 };
-    
+/* affichage page  */
 init();
     

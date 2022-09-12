@@ -1,9 +1,8 @@
 export function photographerFactory(data) {
     /* récupérer les valeurs des clés */
     const { name, portrait, city, country, tagline, price, id } = data;
-    console.log("./assets/images/Photographers_ID_photos/"+portrait);
-
-    /* Création cartes avec les valeurs récupérées */
+  //  console.log("./assets/images/Photographers_ID_photos/"+portrait);
+    /* Création carte avec les valeurs récupérées */
     const article = `
         <article>
             <a href= "./photographer.html?id=${id}" title="${name}">
@@ -15,6 +14,5 @@ export function photographerFactory(data) {
             <p class="boldLight">${price}€/jour</p>
         </article>
     `;
-
    return article;
 }

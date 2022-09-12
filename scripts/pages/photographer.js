@@ -8,7 +8,8 @@ import {displayPrice} from "../utils/userInterface.js";
 import {displayMenuFilters} from "../utils/userInterface.js";
 import {addLike} from "../utils/userInterface.js";
 
-
+/* import class  */
+import Lightbox from "../utils/lightBox.js"
 
 
 async function initPage(){
@@ -22,20 +23,22 @@ async function initPage(){
      /* pour le répertoires des médias  */
      const firstName = photographer[0].name.split(' ')[0];
      const price = photographer[0].price;
-    // console.log("data un photographe:",photographer);
-
+  
      /* Filtrage des medias */
      const photographerMedias = mediaData.filter(media => media.photographerId == identity)
-
-     //console.log("les médias :",photographerMedias );
+    /*lightbox*/
+    let lightbox = null;
+    lightbox = new Lightbox(photographerMedias, firstName);
+    
+    //console.log("les médias :",photographerMedias );
 
      /* affichage en-tête du photographe , ces médias,  like et prix  */
      displayHeaderPhotograph(photographData, identity);
-     displayMedia(photographerMedias, firstName, null);
+     displayMedia(photographerMedias, firstName, null, lightbox);
      displayPrice(photographerMedias, price, identity);
 
 
-    /* Gestion du clic du menu filtre par la flèche l' étendre/réduires */
+    /*écoute évènement clic menu filtre par la flèche  étendre/réduire */
     document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
     document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
 
@@ -52,14 +55,15 @@ async function initPage(){
         }
     });
 
-     /* écoute évènement clic icone coeurs de chaque cartes  pour incrémenter le nombre
-     total de like  */
-     let listDivLike = document.querySelectorAll("div.totalLikes");
-     for (const like of listDivLike) {
-         like.addEventListener("click", addLike);
-     }    
+    /* écoute évènement clic icône coeurs de chaque cartes  pour incrémenter le nombre
+    total de like  */
+    let listDivLike = document.querySelectorAll("div.totalLikes");
+    for (const like of listDivLike) {
+        like.addEventListener("click", addLike);
+    }  
 }
 
+/* affichage page */
 initPage();
 
 

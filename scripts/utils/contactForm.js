@@ -1,3 +1,10 @@
+/* import functions  */
+import{validateFirst} from "./userInterface.js";
+import{validateLast} from  "./userInterface.js";
+import{validateEmail} from "./userInterface.js";
+import{validateMessage} from "./userInterface.js";
+
+
 /*  constantes DOM  */
 const body = document.getElementById("body");
 const openModal = document.getElementById("openModal");
@@ -27,7 +34,6 @@ let responses = {
 
  /* ecoute évènement clic pour ouverture de la modale */
 document.getElementById("openModal").addEventListener("click", (e) =>{
-    e.preventDefault();
     displayModal(e);
 });
  /* ecoute évènement clic pour fermeture de la modale */
@@ -37,7 +43,10 @@ document.getElementById("openModal").addEventListener("click", (e) =>{
 
 /*  modale contact ouverture  */
 function displayModal() {  
-      
+    
+    /* accessibilité modale par la touche echap */
+    document.getElementById("contact_modal").focus(); 
+    
     /* récupérer le nom dans le titre h1 de la page */
     let firstName = document.querySelector("h1.firstName").innerText;
     /* les champs de saisies du formulaire sont focus */
@@ -46,7 +55,7 @@ function displayModal() {
     const lastElement = focusElement[(focusElement.length - 1)];
 
     closeContactForm.focus();
-    modal.style.display = "flex";  /* ouverture de la modale  */
+    modal.style.display = "block";  /* ouverture de la modale  */
     
     /* ajout nom photographe dans le titre de la modale */
     document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;
@@ -54,15 +63,9 @@ function displayModal() {
     /* accessibilité modale, body et main  */
     document.getElementById("main").ariaHidden = "true";
     document.getElementById("contact_modal").ariaHidden = "false";
-
-
-    /*********** problème scroll à cherche solution ****************************/
-    // body.classList.add("no-scroll");
-    /************************************************************************** */
-
-
-    /* accessibilité modale par la touche echap */
-    document.getElementById("contact_modal").focus(); 
+    body.classList.add("no-scroll");
+  
+  
     /* accessibilité gestion de la navigation au clavier avec tab  */
     document.querySelector("#contact_modal").addEventListener("keydown", (e) =>{
         const current = e.target;
@@ -91,98 +94,9 @@ function closeModal() {
     /* accessibilité modale, body et  main  */
     document.getElementById("main").ariaHidden = "false";
     document.getElementById("contact_modal").ariaHidden = "true";
-
-    /***************  problème scroll à cherche solution  ***********/
-    //body.classList.remove("no-scroll");
-    /***************************************************************/
-
+    body.classList.remove("no-scroll");
     /* accessibilité modale par la touche echap */
     document.getElementById("openModal").focus();
-   // location.reload();
-
-}
-
-
-/* vérification du prénom */
-function validateFirst() {    
-    /* expressions régulières(regex) /^ pour début   $/ pour fin 
-    [A-zÀ-ú-] les lettres minuscule et majuscule avec accent,tiret et apostrophe sont possible 
-    {2,} minimun 2 autorisés    */
-    const regex = /^[A-zÀ-ú-']{2,}$/;
-    if (!regex.test(first.value)) {
-        /* affichage message d'erreur et encadrer d'erreur */
-        document.querySelector(".first-error").innerText =
-        messagesError.firstNameError; 
-        first.classList.add("data-error");
-        first.classList.remove("data-validate"); 
-        return false
-    }
-    /* pas de message d'erreur et encadrer de validation */
-    document.querySelector(".first-error").innerText  = "";
-    first.classList.remove("data-error"); 
-    first.classList.add("data-validate");
-    return true
-
-}
-
-/* vérification du nom */
-function validateLast() {
-    /* supprime n’importe quel symbole d’espacement, autorise les noms à particule   */
-    const space = last.value.replace(/\s+/g, '') 
-    /* expressions régulières(regex) /^ pour début   $/ pour fin 
-    [A-zÀ-ú-] les lettres minuscule et majuscule avec accent,tiret et apostrophe sont possible 
-    {2,} minimun 2 autorisés */             
-    const regex = /^[A-zÀ-ú-']{2,}$/;
-    if (!regex.test(space)) {
-        /* affichage message d'erreur et encadrer d'erreur */
-        document.querySelector(".last-error").innerText =
-        messagesError.lastNameError; 
-        last.classList.add("data-error");
-        last.classList.remove("data-validate"); 
-        return false
-    }
-    /* pas de message d'erreur et encadrer de validation */
-    document.querySelector(".last-error").innerText  = "";
-    last.classList.remove("data-error"); 
-    last.classList.add("data-validate");
-    return true
-}
-
-/*  vérification format email   */
-function validateEmail() {
-    /* caractère alphanumerique (sans accent) avant et après le "@" et le point  */
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
-    if (!regex.test(email.value)) {
-       /* affichage message d'erreur et encadrer d'erreur */
-       document.querySelector(".email-error").innerText =
-       messagesError.emailError; 
-       email.classList.add("data-error");
-       email.classList.remove("data-validate"); 
-       return false
-    }
-    /* pas de message d'erreur et encadrer de validation */
-    document.querySelector(".email-error").innerText  = "";
-    email.classList.remove("data-error"); 
-    email.classList.add("data-validate");
-    return true
-}
-
-/*  vérification format email   */
-function validateMessage() {
-    /* minimum 10 caractères */
-    if (message.value.length < 10) {
-       /* affichage message d'erreur et encadrer d'erreur */
-       document.querySelector(".message-error").innerText =
-       messagesError.messageError; 
-       message.classList.add("data-error");
-       message.classList.remove("data-validate"); 
-       return false
-    }
-    /* pas de message d'erreur et encadrer de validation */
-    document.querySelector(".message-error").innerText  = "";
-    message.classList.remove("data-error"); 
-    message.classList.add("data-validate");
-    return true
 }
 
 function validateForm(){
@@ -192,10 +106,10 @@ function validateForm(){
     responses.data.email = email.value;
     responses.data.message = message.value;
     console.log("les champs saisies:",responses); 
-    if(validateFirst() &&
-        validateLast() &&
-        validateEmail() &&
-        validateMessage() 
+    if(validateFirst(first,messagesError) &&
+        validateLast(last,messagesError) &&
+        validateEmail(email,messagesError) &&
+        validateMessage(message,messagesError) 
         === true){
         responses.isValid = true;
         console.log("les champs saisies:",responses);       
@@ -208,10 +122,10 @@ function validateForm(){
 /* évènement du submit formulaire et vérification des saisies du formulaire */
 form.addEventListener('submit', (e) => { 
     e.preventDefault();  /* ne pas recharger la modale avec le click submit */
-    validateFirst();
-    validateLast();
-    validateEmail();
-    validateMessage();
+    validateFirst(first,messagesError);
+    validateLast(last,messagesError);
+    validateEmail(email,messagesError);
+    validateMessage(message,messagesError);
     validateForm();   
 });
   
