@@ -2,9 +2,12 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
+     <!-- CSS -->
     <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
-    <link href="./css/style.css" rel="stylesheet" type="text/css" />    
+    <link href="./css/style.css" rel="stylesheet" type="text/css" /> 
+     <!-- Favicon -->   
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- google fonts import --> 
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <!-- kit fontawesome pour import d'icône-->
     <script src="https://kit.fontawesome.com/0b6d538c32.js" crossorigin="anonymous"></script>
@@ -17,29 +20,29 @@
       </a>
     </header>
     <main id="main" aria-hidden="false">
-      <!--section info et image du photographe ainsi que la modale contact-->
-      <section class="photograph-header">
+      <!--bloc info et image du photographe ainsi que la modale contact-->
+      <div class="photograph-header">
         <div id="photograph-data"></div>
         <div id="contact-button">
           <button class="contact_button" id="openModal" aria-label="Contactez Me" 
           aria-haspopup="dialog" aria-controls="contact_modal" >Contactez-moi</button>
         </div>        
         <div id="photograph-picture"></div>
-      </section>
+      </div>
 
-     <!-- Section médias du photographe -->
-     <section class="media-section">
+     <!-- bloc médias du photographe -->
+    <div class="media-section">
 
       <!--menu filtre-->
       <div class="menuFilter">
         <label id="labelTri">Trier par</label>
-        <ul id="listFilters" role="listbox">
-          <li id="firstSort" aria-selected="true" aria-checked="true" role="listitem">
-            <button class="listButton" id="btnSortLikes" aria-labelledby="Order by">Popularité</button>          
+        <ul id="listFilters" role="listbox" aria-label="Menu de trie">
+          <li id="firstSort">
+            <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
           </li>
           <li>
             <!-- Flèche bas pour développer les options -->
-            <span id="arrowDown" class="visible" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="arrowDown" class="visible" aria-label="Flèche bas pour dérouler menu" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
               <!--icône fontawesome flèche bas-->
               <i class="fa-solid fa-angle-down fa-lg"></i> 
             </span>
@@ -61,7 +64,7 @@
       <!--Affichage des médias du photographe-->
       <div id="medias"></div>  
 
-    </section>
+    </div>
 
     <!--Affichage like et prix du photographe-->
     <div id="priceLikes"></div>

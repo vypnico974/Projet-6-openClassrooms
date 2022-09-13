@@ -7,7 +7,6 @@ import{validateMessage} from "./userInterface.js";
 
 /*  constantes DOM  */
 const body = document.getElementById("body");
-const openModal = document.getElementById("openModal");
 const modal = document.getElementById("contact_modal");
 const form = document.getElementById("contact_form");
 const first = document.getElementById("inputFirstname");

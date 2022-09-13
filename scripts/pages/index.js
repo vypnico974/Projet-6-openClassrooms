@@ -7,7 +7,7 @@ import{displayData} from "../utils/userInterface.js";
 async function init() {
     const photographers = await getPhotographers();
     displayData(photographers);
-};
+}
 /* affichage page  */
 init();
     

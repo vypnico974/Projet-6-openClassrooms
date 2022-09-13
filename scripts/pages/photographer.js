@@ -13,6 +13,8 @@ import Lightbox from "../utils/lightBox.js"
 
 
 async function initPage(){
+
+    
     /* Id du photographge via l'URL */ 
     let identity = getUrl();
     /* données photographe et médias du photographe(id) */

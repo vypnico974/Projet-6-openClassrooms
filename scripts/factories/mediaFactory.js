@@ -4,7 +4,7 @@ import Picture from "./picture.js";
 
 /*  adaptateur pour afficher les formats images et videos   */
 export default class MediaFactory{
-    constructor(media, firstName){
+    constructor(media,  firstName){
         if(media.image){ /* format média image  */
             /* création du bloc article média contenant l'image  */
             return new Picture(media, firstName);

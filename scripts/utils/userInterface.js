@@ -3,9 +3,6 @@ import {photographerFactory} from "../factories/photographer.js";
 /* import class  */
 import MediaFactory from "../factories/mediaFactory.js";
 
-let lightbox = null;
-
-
 /* Création de toutes les cards individuellement par la fonction photographerFactory qui se
  trouve dans photographer.js et affichage dans la section photographer_section */
  export async function displayData(photographers) {
@@ -20,7 +17,7 @@ let lightbox = null;
    });       
    /* Affichage de toutes les cards dans la section photographersSection */
    photographersSection.innerHTML = userCardDOM;
-};
+}
 
 export function getUrl(){
     /* récupère l'Id dans l'url */
@@ -47,7 +44,7 @@ export function displayHeaderPhotograph(data, idPhotographer){
 
 /* paramètres : les medias du photographe, son prénom et le trie selectionné
 ainsi que les lien pour la lightbox */
-export function displayMedia(medias, firstName, sortBy, lightbox){
+export function displayMedia(medias,  firstName, sortBy, lightbox){
     /* bloc pour afficher les médias */
     const divMedias = document.getElementById("medias"); 
     let articlesList = ""; /*code HTML pour les articles medias*/
@@ -55,6 +52,7 @@ export function displayMedia(medias, firstName, sortBy, lightbox){
     let temporary = null; /* stockage tempaire pour l'ordre de trie  */
     let currentParent = null; /* Contiendra l'id de l'élément parent 
     du tri sélectionné pour inverser l'ordre des options */
+    
 
     switch (sortBy) {
         /* Tri décroissant sur les likes du média.
@@ -141,14 +139,31 @@ export function displayMedia(medias, firstName, sortBy, lightbox){
         let mediaCard = new MediaFactory(mediaItem, firstName);   
         articlesList += mediaCard.article;
     }
+    
     /* Affichage des cartes dans le bloc médias */
     divMedias.innerHTML = articlesList; 
-    
-     /* Gestion de la lightbox sur le lien de chaque média */
+
+    /* focus 
+    let titleMediaFocus = document.querySelectorAll("titleMedia");
+    for (const focus of titleMediaFocus ) {
+        document.focus.focus();
+    }  */
+
+    /* Gestion de la lightbox sur le lien de chaque média */
      let listMediaLinks = document.querySelectorAll("a.mediaLink");
-     lightbox.mediasList = sortedMedias;
+         lightbox.mediasList = sortedMedias;
+
+
+    /* écoute évènement clic icône coeurs de chaque cartes  pour incrémenter le nombre
+    total de like  */
+    let listDivLike = document.querySelectorAll("div.totalLikes");
+    for (const like of listDivLike) {
+        like.addEventListener("click", addLike);
+    } 
+         
      for (const link of listMediaLinks) {
          link.addEventListener("click", (e) => {
+            console.log(e);
             /* récupére l'id du media cliqué stocké dans le dataset
                puis lancer la lighbox  */
             lightbox.launch(e.currentTarget.dataset.id);
@@ -201,15 +216,40 @@ export function displayPrice(medias, price, id){
     document.querySelector("#secondSort").classList.toggle('hidden');
     document.querySelector("#thirdSort").classList.toggle('visible');
     document.querySelector("#thirdSort").classList.toggle('hidden');
+
+    /* navigation au clavier */
+        /*  sélectionner les zones du menu à mettre le focus */
+   //     const focusElements = document.querySelectorAll("#arrowUp, #arrowDown, #firstSort, #secondSort, #thirdSort");
+    //    const firstElement = focusElements[0];
+    //    const lastElement = focusElements[(focusElements.length - 1)];
+        /* écoute l'évènement appuie une touche du clavier sur zones focus ligntbox  */
+    //    document.querySelector("#lightbox").addEventListener("keydown", (e) =>{    
+            /* des boutons de la lightbox à atteindre via Tab/Shift + Tab*/
+    /*        if(e.target == lastElement){
+                if(!e.shiftKey && e.key === "Tab"){
+                    e.preventDefault();
+                    document.getElementById(firstElement.id).focus();
+                }
+            }else if(e.target == firstElement){
+                if(e.shiftKey && e.key === 'Tab'){
+                    e.preventDefault();
+                    document.getElementById(lastElement.id).focus();
+                }
+            } 
+ 
+        }); */
 }
 
 
 /* imcrémenter du nombre de like  */
 export function addLike(){
-    /*récupère le nombre de like indiqué à coté du coeur cliqué et
+     /*récupère le nombre de like indiqué à coté du coeur cliqué et
     le stock dans une variable  */
     let current = parseInt(this.firstElementChild.innerText);
     this.firstElementChild.innerText = current + 1;
+    let numberLike = this.firstElementChild.innerText;
+    /* affichage :nombre de like + icône coeur plein sur l'icône coeur vide  */
+    this.firstElementChild.innerHTML= `${numberLike}<i class="fa-heart fas iconHeartFas"></i>`;
     /* suppression de l'évènement du click pour ajouter un like */
     this.removeEventListener("click", addLike);
     /* ajout de l'évènement du click pour soustraire un like */
@@ -218,6 +258,7 @@ export function addLike(){
     let currentTotal = parseInt(document.getElementById("countLikes").firstElementChild.innerText);
     /*afficher le nombre total de like  */
     document.getElementById("countLikes").firstElementChild.innerText = currentTotal + 1;
+  
 }
 /* décrémenter du nombre de like  */
 function removeLike(){
@@ -225,6 +266,9 @@ function removeLike(){
     le stock dans une variable  */
     let current = parseInt(this.firstElementChild.innerText);
     this.firstElementChild.innerText = current - 1;
+    let numberLike = this.firstElementChild.innerText;
+    /* affichage nombre de like et suppression du coeur remmpli  */
+    this.firstElementChild.innerHTML= `${numberLike}`;
      /* suppression de l'évènement du click pour soustraire un like */
     this.removeEventListener("click", removeLike);
     /* ajouter de l'évènement du click pour ajouter un like */
@@ -285,7 +329,7 @@ export function validateLast(last,messagesError) {
 /*  vérification format email   */
 export function validateEmail(email,messagesError) {
     /* caractère alphanumerique (sans accent) avant et après le "@" et le point  */
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+    const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (!regex.test(email.value)) {
        /* affichage message d'erreur et encadrer d'erreur */
        document.querySelector(".email-error").innerText =
