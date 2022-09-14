@@ -37,10 +37,10 @@
       <div class="menuFilter">
         <label id="labelTri">Trier par</label>
         <ul id="listFilters" role="listbox" aria-label="Menu de trie">
-          <li id="firstSort">
+          <li id="firstSort" role="option">
             <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
           </li>
-          <li>
+          <li role="option">
             <!-- Flèche bas pour développer les options -->
             <span id="arrowDown" class="visible" aria-label="Flèche bas pour dérouler menu" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
               <!--icône fontawesome flèche bas-->
@@ -52,10 +52,10 @@
               <i class="fa-solid fa-angle-up fa-lg"></i>
             </span>
           </li>            
-          <li class="hidden" id="secondSort">
+          <li role="option" class="hidden" id="secondSort">
             <button class="listButton" id="btnSortDate" aria-labelledby="labelTri">Date</button>
           </li>
-          <li class="hidden" id="thirdSort">
+          <li role="option" class="hidden" id="thirdSort">
             <button class="listButton" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
           </li>
         </ul>
@@ -97,7 +97,7 @@
 			<div class="modalBground">
 				<header>
           <h2 id="contactMe">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="closeContactForm" aria-label="Close Contact form" tabindex="0" alt="Bouton de fermeture"/>
+          <img src="assets/icons/close.svg" id="closeContactForm" aria-label="Close Contact form" tabindex="0" alt="Bouton fermeture formulaire"/>
         </header>
 				<form
           id="contact_form"
@@ -132,7 +132,7 @@
             <span class="last-error"></span>
           </div>       
           <div class="formField" id="divEmail">
-            <label aria-label="email-label" id="labelEmail">Email</label>
+            <label for="inputEmail" aria-label="email-label" id="labelEmail">Email</label>
             <input 
             aria-label="Email" 
             type="email" 
@@ -144,7 +144,7 @@
             <span class="email-error"></span>
           </div>
           <div class="formField" id="divMessage">
-            <label aria-label="message-label" id="labelMessage">Votre Message</label>
+            <label for="inputMessage" aria-label="message-label" id="labelMessage">Votre Message</label>
             <textarea class="inputMessage" 
             aria-label="Your message"
             name="Message"

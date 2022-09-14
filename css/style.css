@@ -4,6 +4,7 @@ body {
     font-family: "DM Sans", sans-serif;
     max-width: 1900px;
     margin: auto;
+    box-sizing: border-box;
 }
 
 
@@ -25,6 +26,10 @@ h1 {
     height: 50px;
     margin-left: 100px;
 }
+.logo:hover {
+    transform: scale(1.08);
+}
+
 
 .photographer_section {
     display: grid;
@@ -40,6 +45,10 @@ h1 {
     align-items: center;
     flex-direction: column;
 }
+.photographer_section article a:hover {
+    transform: scale(1.08);
+}
+
 
 /* Nom du photographe */
 .photographer_section article h2 {
@@ -55,8 +64,7 @@ img.portrait {
     overflow: hidden; 
     margin: auto;
 }
-
-/*informations supplémentaires photographes   color: #901C1C;*/
+/*informations supplémentaires photographes */
 .photographer_section article p{
     margin: 0;
     font-size: 0.9em;
@@ -76,7 +84,7 @@ img.portrait {
     text-decoration: none;
    
 }
-.photographer_section article a:focus {
+.photographer_section article a:focus-visible {
     outline: solid 2px #901C1C;
     outline-offset: 2px;   
 }
