@@ -186,13 +186,11 @@ export function displayPrice(medias, price, id){
     }
     /* bloc prix et like, utilisation icône fontawesome coeur */
     content.innerHTML = `<div id="countLikes">
-                            <p>${likesCount}</p>
+                            <span>${likesCount}</span>
                             <i class="fa-solid fa-heart"></i>
                         </div> 
-                        <p>${price}€ / jour</p>`;      
+                        <span>${price}€ / jour</span>`;    
 }
-
-
 /* gestion de l'affichage menu trie  */
  export function displayMenuFilters(){
     /* classList.toggle : dans notre cas, 1 seul argument est présent, donc
@@ -215,29 +213,7 @@ export function displayPrice(medias, price, id){
     document.querySelector("#secondSort").classList.toggle('visible');
     document.querySelector("#secondSort").classList.toggle('hidden');
     document.querySelector("#thirdSort").classList.toggle('visible');
-    document.querySelector("#thirdSort").classList.toggle('hidden');
-
-    /* navigation au clavier */
-        /*  sélectionner les zones du menu à mettre le focus */
-   //     const focusElements = document.querySelectorAll("#arrowUp, #arrowDown, #firstSort, #secondSort, #thirdSort");
-    //    const firstElement = focusElements[0];
-    //    const lastElement = focusElements[(focusElements.length - 1)];
-        /* écoute l'évènement appuie une touche du clavier sur zones focus ligntbox  */
-    //    document.querySelector("#lightbox").addEventListener("keydown", (e) =>{    
-            /* des boutons de la lightbox à atteindre via Tab/Shift + Tab*/
-    /*        if(e.target == lastElement){
-                if(!e.shiftKey && e.key === "Tab"){
-                    e.preventDefault();
-                    document.getElementById(firstElement.id).focus();
-                }
-            }else if(e.target == firstElement){
-                if(e.shiftKey && e.key === 'Tab'){
-                    e.preventDefault();
-                    document.getElementById(lastElement.id).focus();
-                }
-            } 
- 
-        }); */
+    document.querySelector("#thirdSort").classList.toggle('hidden');  
 }
 
 

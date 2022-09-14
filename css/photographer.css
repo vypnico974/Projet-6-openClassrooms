@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+header a:focus{
+    outline: solid 2px #901C1C;   
+}
+
 .firstName{
     font-size: 3.2em;
     color : #D3573C
@@ -33,6 +37,13 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+ }
+.contact_button:hover{
+    outline: solid 2px #901C1C; 
+    border-style: none;
+}
+.contact_button:visited{
+    border-style: none;
 }
 
 /***** partie modal *******************/
@@ -256,22 +267,19 @@ span#arrowDown, span#arrowUp{
     align-items: center;   
 }
 
-
 .totalLikes button{
     background-color: white;
-    border: 5px solid white;
     cursor: pointer;
-    transition-duration: 0.3s, 0.3s;
-    transition-timing-function: ease, ease;
-    transition-delay: 0s, 0s;
+    outline: solid 2px white; 
+    border-style: none;
+ 
 }
 .totalLikes button:focus-visible{
-    background-color: white;
-    border: 1px solid #db8876;
+    outline: solid 2px #901C1C; 
+    border-style: none;  
 }
-.totalLikes button::after{
-   border: 5px solid white;
-}
+
+
 
 
 .iconHeartFas{ /*coeur plein */
@@ -287,11 +295,13 @@ span#arrowDown, span#arrowUp{
     right: 25px;
     padding: 0 20px;
     width: 300px;
+    height: 40px;
     font-weight: 600;
     font-size: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     

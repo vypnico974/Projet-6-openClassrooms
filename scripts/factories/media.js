@@ -10,9 +10,9 @@ export default class Media{
                             <a href="#" title="${this.title}, vue agrandie" data-id="${this.id}" id="${this.id}" class="mediaLink" role="button" aria-haspopup="dialog" aria-controls="lightbox">
                              ${mediaContent}
                             </a>                            
-                            <p class="titleMedia">${this.title}</p>
+                            <h2 class="titleMedia">${this.title}</h2>
                             <div class="totalLikes" aria-label="nombre de coeur ${this.likes}">
-                                <p>${this.likes}</p>
+                                <span>${this.likes}</span>
                                 <button aria-label="Ajout ou suppression coeur">
                                     <i class="fa-heart far"></i> 
                                 </button>   
