@@ -11,7 +11,7 @@ export default class Media{
                              ${mediaContent}
                             </a>                            
                             <h2 class="titleMedia">${this.title}</h2>
-                            <div class="totalLikes" aria-label="nombre de coeur ${this.likes}">
+                            <div class="totalLikes" aria-label="nombre de coeur ${this.likes}" role="button">
                                 <span>${this.likes}</span>
                                 <button aria-label="Ajout ou suppression coeur">
                                     <i class="fa-heart far"></i> 
