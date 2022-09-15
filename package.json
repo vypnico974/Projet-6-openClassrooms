@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --max-warnings=0 ."
+    "lint": "eslint --max-warnings=0 .",
+    "prefix": "postcss ./css/photographer.css --use autoprefixer -d ./css/prefix/photographer.css"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
   },
   "author": "",
   "license": "ISC",
+  "browserslist": "last 20 versions",
   "bugs": {
     "url": "https://github.com/vypnico974/Projet-6-openClassrooms/issues"
   },

@@ -11,7 +11,7 @@ export default class Video extends Media{
     create(){
     /* bloc video   */
     let mediaContent = 
-        `<video controls autoplay loop class="contentMedia">
+        `<video class="contentMedia">
             <source src="assets/images/${this.firstName}/${this.video}" type="video/mp4">
         </video>`;
         /* methode create de la classe media pour créer le bloc article média

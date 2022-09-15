@@ -193,7 +193,7 @@ export function displayPrice(medias, price, id){
 }
 /* gestion de l'affichage menu trie  */
  export function displayMenuFilters(){
-    /* classList.toggle : dans notre cas, 1 seul argument est présent, donc
+    /* classList.toggle : dans ce cas, 1 seul argument est présent, donc
      change la présence d'une classe dans  la liste. Si la classe existe,
       alors la supprime et renvoie false, dans le cas inverse,
        ajoute cette classe et retourne true.  */
@@ -225,7 +225,7 @@ export function addLike(){
     this.firstElementChild.innerText = current + 1;
     let numberLike = this.firstElementChild.innerText;
     /* affichage :nombre de like + icône coeur plein sur l'icône coeur vide  */
-    this.firstElementChild.innerHTML= `${numberLike}<i class="fa-heart fas iconHeartFas"></i>`;
+    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeartFas"></i>`;
     /* suppression de l'évènement du click pour ajouter un like */
     this.removeEventListener("click", addLike);
     /* ajout de l'évènement du click pour soustraire un like */

@@ -1,13 +1,21 @@
 @import url("./photographer.css");
 
+/* règles d'espacement */ 
+*{
+ line-height: 1.5 ;
+ letter-spacing: 0.12em ;
+ word-spacing: 0.16em ;
+}
+p{
+ margin-bottom: 2em;
+} 
+
 body {
     font-family: "DM Sans", sans-serif;
     max-width: 1900px;
     margin: auto;
     box-sizing: border-box;
 }
-
-
 header {
     display: flex;
     flex-direction: row;
@@ -16,12 +24,10 @@ header {
     height: 90px;
     width: 100%;
 }
-
 h1 {
     color: #901C1C;
     margin-right: 100px;
 }
-
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -29,15 +35,12 @@ h1 {
 .logo:hover {
     transform: scale(1.08);
 }
-
-
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 90px;
     margin-top: 100px;
 }
-
 .photographer_section article, .photographer_section article a {
     justify-self: center;
     display: flex;
@@ -48,12 +51,10 @@ h1 {
 .photographer_section article a:hover {
     transform: scale(1.08);
 }
-
-
 /* Nom du photographe */
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 2.2em;
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
 /* portrait photographe  */
@@ -82,7 +83,6 @@ img.portrait {
 }
 .photographer_section article a {
     text-decoration: none;
-   
 }
 .photographer_section article a:focus-visible {
     outline: solid 2px #901C1C;

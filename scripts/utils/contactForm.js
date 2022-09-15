@@ -104,7 +104,6 @@ function validateForm(){
     responses.data.lastName = last.value;
     responses.data.email = email.value;
     responses.data.message = message.value;
-    console.log("les champs saisies:",responses); 
     if(validateFirst(first,messagesError) &&
         validateLast(last,messagesError) &&
         validateEmail(email,messagesError) &&
