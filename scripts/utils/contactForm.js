@@ -15,10 +15,10 @@ const email = document.getElementById("inputEmail");
 const message = document.getElementById("inputMessage");
 const closeContactForm = document.getElementById("closeContactForm");
 const messagesError = {
-    lastNameError: 'Veuillez entrer 2 caractères ou plus le nom.',
-    firstNameError: 'Veuillez entrer 2 caractères ou plus pour le prénom.',
-    emailError: 'Veuillez entrer une adresse email valide.',
-    messageError: 'Veuillez entrer 10 caractères ou plus pour le message.'
+    lastNameError: '2 lettres de l\'alphabet ou plus pour le nom.',
+    firstNameError: '2 lettres de l\'alphabet ou plus pour le prénom.',
+    emailError: 'format adresse email non valide.',
+    messageError: '10 caractères ou plus pour le message.'
 };
 /* objet pour insérer toutes les données saisies dans le formulaire  */
 let responses = {

@@ -37,6 +37,7 @@
       <div class="menuFilter">
         <label id="labelTri">Trier par</label>
         <ul id="listFilters" role="listbox" aria-label="Menu de trie">
+          <!--premier option de trie-->
           <li id="firstSort" role="option">
             <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
           </li>
@@ -51,10 +52,12 @@
               <!--icône fontawesome flèche haut-->
               <i class="fa-solid fa-angle-up fa-lg"></i>
             </span>
-          </li>            
+          </li>   
+          <!--deuxième option de trie-->         
           <li role="option" class="hidden" id="secondSort">
             <button class="listButton" id="btnSortDate" aria-labelledby="labelTri">Date</button>
           </li>
+          <!--troisième option de trie-->
           <li role="option" class="hidden" id="thirdSort">
             <button class="listButton" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
           </li>
@@ -108,54 +111,74 @@
 					<div class="formField" id="divFirstName">
 						<label for="inputFirstname" aria-label="first-name-label" id="labelFirst">Prénom</label>
             <input 
+            aria-invalid="true"
             aria-label="first name"
             type="text" 
             id="inputFirstname" 
             name = "Prénom"
             minlength="2" 
             placeholder="exemple: John"
+            aria-describedby="lettre de l'alphabet"
+            aria-labelledby="labelFirst error-first"
             aria-required=true
             required/>
-            <span class="first-error"></span>
+            <!--affichage message d'erreur-->
+            <label id="error-first" for="inputFirstname" class="first-error">
+            </label>         
 					</div>
           <div class="formField" id="divLastName">
             <label for="inputLastname" aria-label="last-name-label" id="labelName">Nom</label>
-            <input 
+            <input
+            aria-invalid="true"
             aria-label="Last name"
             type="text" 
             id="inputLastname"
             name = "Nom"
             minlength="2" 
             placeholder="exemple: Doe"
+            aria-describedby="lettre de l'alphabet"
+            aria-labelledby="labelName error-last"
             aria-required=true
             required/>
-            <span class="last-error"></span>
+            <!--affichage message d'erreur-->
+            <label id="error-last" for="inputLastname" class="last-error">
+            </label>
           </div>       
           <div class="formField" id="divEmail">
             <label for="inputEmail" aria-label="email-label" id="labelEmail">Email</label>
             <input 
+            aria-invalid="true"
             aria-label="Email" 
             type="email" 
             name="Email"
             id="inputEmail"
             placeholder="exemple: john.doe@mail.com"
+            aria-describedby="format email"
+            aria-labelledby="labelEmail error-email"
             aria-required=true
             required/>
-            <span class="email-error"></span>
+            <!--affichage message d'erreur-->
+            <label id="error-email" for="inputEmail" class="email-error">
+            </label>
           </div>
           <div class="formField" id="divMessage">
             <label for="inputMessage" aria-label="message-label" id="labelMessage">Votre Message</label>
             <textarea class="inputMessage" 
+            aria-invalid="true"
             aria-label="Your message"
             name="Message"
             id="inputMessage"
             minlength="10" 
             placeholder="Veuillez écrire votre message."
+            aria-describedby="nombre caractère"
+            aria-labelledby="labelMessage error-message"
             aria-required=true
             required></textarea>
-            <span class="message-error"></span>
+            <!--affichage message d'erreur-->
+            <label id="error-message" for="inputMessage" class="message-error">
+            </label>
           </div>                    
-          <button type="submit" aria-label="Send" class="contact_button" id="submit">Envoyer</button>
+          <button type="submit" aria-label="Send" aria-describedby="envoyer formulaire de contact" class="contact_button" id="submit">Envoyer</button>
         </form>
 			</div>
 		</div>

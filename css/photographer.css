@@ -106,19 +106,19 @@ form textarea.inputMessage {
 .email-error,
 .message-error{
   font-size: 1em;
-  color: red;
+  color:black;
   display: block;
   margin-bottom: -15px;
   text-align: left;
-  line-height: 1em;
   transition: 0.2s;
+
 }
 /* encadrer erreur et validation  */
 .data-validate{
     border: 2px solid green;
 }
 .data-error{
-    border: 2px solid #e54858;
+    border: 2px solid #901C1C;
 }
 .no-scroll {
     overflow: hidden;

@@ -308,7 +308,7 @@ export function validateEmail(email,messagesError) {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/;
     if (!regex.test(email.value)) {
        /* affichage message d'erreur et encadrer d'erreur */
-       document.querySelector(".email-error").innerText =
+       document.querySelector(".email-error").innerHTML =
        messagesError.emailError; 
        email.classList.add("data-error");
        email.classList.remove("data-validate"); 
