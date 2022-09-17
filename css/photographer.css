@@ -1,7 +1,7 @@
 /***  patie en-tête photographe  ****/
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+    min-height: 300px;
     margin: 0 100px;
     display: flex;
     flex-direction: row;
@@ -12,7 +12,7 @@ header a:focus-visible{
     outline: solid 2px #901C1C;       
 }
 .firstName{
-    font-size: 2em;
+    font-size: 2.3em;
     color : #D3573C
 }
 .photograph-header #photograph-data,
@@ -27,7 +27,7 @@ header a:focus-visible{
     font-weight: bold;
     color: white;
     padding: 11px;
-    width: 170px;
+    min-width: 170px;
     height: 70px;
     border: none;
     background-color: #901C1C;
@@ -115,10 +115,10 @@ form textarea.inputMessage {
 }
 /* encadrer erreur et validation  */
 .data-validate{
-    border: 2px solid green;
+    border: 4px solid green;
 }
 .data-error{
-    border: 2px solid #901C1C;
+    border: 4px solid #901C1C;
 }
 .no-scroll {
     overflow: hidden;
@@ -188,6 +188,9 @@ ul{
     user-select: none;
     position: relative;
 }
+li{
+    display: block;
+}
 .listButton{
     border-radius: 5px;
     overflow: hidden;
@@ -234,7 +237,7 @@ span#arrowDown:focus, span#arrowUp:focus{
     margin: 0;
     font-weight: 600;
     align-items: center;  
-    width : 70%;
+    width : 73%;
 }
 .totalLikes{
     color: #901C1C;
@@ -255,24 +258,34 @@ span#arrowDown:focus, span#arrowUp:focus{
 }
 .totalLikes button:focus-visible{
     outline: solid 2px #901C1C; 
-    border-style: none;  
+    border-style: none;
+    color: 901C1C; 
 }
-.iconHeartFas{ /*coeur plein */
+
+.totalLikes span{
+    color:#901C1C;
+    font-weight: 600;
+   
+}
+.iconHeart{ /*coeur plein */
     position: relative;
-    left: 35px; 
+    left: 5px;
+    right: 10px;
     font-size:1.2em; 
+    color:#901C1C;
 }
-.marginLikes{
+span .marginLikes{
     position: relative;
-    left: 10px;    
+    right:50px     
 }
+
 #priceLikes{ /* cadre total des likes et prix en bas à droite */
     background-color:#D3573C;
     position: fixed;
     bottom: 0;
     right: 25px;
     padding: 0 20px;
-    width: 300px;
+    min-width: 300px;
     height: 40px;
     font-weight: 600;
     font-size: 1.5em;
@@ -339,27 +352,4 @@ button.closeLightbox{
     position: absolute;
     right: 0px;
     top: 0px;
-}
-/***  version écran d'ordinateur  ***/
-@media screen and (min-width:992px) { 
-    /* Nom du photographe */
-    .photographer_section article h2 {
-        font-size: 2.2em;
-    }
-    .logo {
-        height: 3em;
-        margin-left: 100px;
-    }
-}
-@media screen and (max-width: 991px) {
-    .logo {
-      height: 2rem;
-      margin-left: 20px;
-    }
-    h1{
-      font-size: 1.2rem ;
-    }
-    .photographer_section article h2 {
-        font-size: 1.1em;
-    }
 }

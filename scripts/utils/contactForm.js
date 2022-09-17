@@ -20,7 +20,7 @@ const messagesError = {
     emailError: 'format adresse email non valide.',
     messageError: '10 caractères ou plus pour le message.'
 };
-/* objet pour insérer toutes les données saisies dans le formulaire  */
+/* objet pour insérer toutes les données saisies du formulaire  */
 let responses = {
     isValid: false,
     data: {
@@ -30,67 +30,64 @@ let responses = {
       message: "",
     }   
   }
-
- /* ecoute évènement clic pour ouverture de la modale */
+ /* ecoute évènement clic bouton "contactez-moi" pour ouverture de la modale */
 document.getElementById("openModal").addEventListener("click", (e) =>{
     displayModal(e);
 });
- /* ecoute évènement clic pour fermeture de la modale */
- document.getElementById("closeContactForm").addEventListener("click", (e) =>{
+ /* ecoute évènement clic pour fermeture de la modale par l'icone croix */
+ closeContactForm.addEventListener("click", (e) =>{
     closeModal(e);
 });
 
 /*  modale contact ouverture  */
-function displayModal() {  
-    
+function displayModal() {      
     /* accessibilité modale par la touche echap */
-    document.getElementById("contact_modal").focus(); 
-    
+    modal.focus();     
     /* récupérer le nom dans le titre h1 de la page */
     let firstName = document.querySelector("h1.firstName").innerText;
     /* les champs de saisies du formulaire sont focus */
     const focusElement = document.querySelectorAll("#contact_modal input, #contact_modal textarea, #contact_modal  img, #contact_modal button");
     const firstElement = focusElement[0]; 
     const lastElement = focusElement[(focusElement.length - 1)];
-
     closeContactForm.focus();
-    modal.style.display = "block";  /* ouverture de la modale  */
-    
+    modal.style.display = "block";  /* ouverture de la modale  */    
     /* ajout nom photographe dans le titre de la modale */
-    document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;
-    
-    /* accessibilité modale, body et main  */
+    document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;    
+    /* l’ensemble du contenu du document, en dehors de la modale est mise en retrait  */
     document.getElementById("main").ariaHidden = "true";
     document.getElementById("contact_modal").ariaHidden = "false";
-    body.classList.add("no-scroll");
-  
-  
+    body.classList.add("no-scroll");  
     /* accessibilité gestion de la navigation au clavier avec tab  */
     document.querySelector("#contact_modal").addEventListener("keydown", (e) =>{
         const current = e.target;
+        /* touche echap ou touche entrée sur l'icône croix fermeture  */
         if (e.key === "Escape" || (e.key === "Enter" && current == firstElement)){
-            e.preventDefault();
+          e.preventDefault();
             closeModal();            
         }else if(current == lastElement){
-           /* shiftkey touche MAJ */
+           /* pas la touche touche MAJ et touche Tab , sens défilement focus*/
             if(!e.shiftKey && e.key === "Tab"){ 
-                e.preventDefault();
+               e.preventDefault();
                 document.getElementById(firstElement.id).focus();
             }
         }else if(current == firstElement){
+             /* touche MAJ et touche Tab , sens inverse défilement focus*/
             if(e.shiftKey && e.key === 'Tab'){
-                e.preventDefault();
+                e.preventDefault();  
                 document.getElementById(lastElement.id).focus();
             }
         }
+         /* ecoute évènement touche espace pour fermeture de la modale sur l'icone croix */
+        if((e.target == closeContactForm) && (e.key === ' ')){
+            closeModal(e);
+        } 
     });  
 }
 
-
 /* fermeture de la modale  */
 function closeModal() {
-    modal.style.display = "none";
-    /* accessibilité modale, body et  main  */
+    /* bloc main visible, formulaire et lighbox cachés  */
+    modal.style.display = "none";    
     document.getElementById("main").ariaHidden = "false";
     document.getElementById("contact_modal").ariaHidden = "true";
     body.classList.remove("no-scroll");
@@ -109,10 +106,10 @@ function validateForm(){
         validateEmail(email,messagesError) &&
         validateMessage(message,messagesError) 
         === true){
-        responses.isValid = true;
+        responses.isValid = true; /* tout les contrôles sont vrai   */
         console.log("les champs saisies:",responses);       
         closeModal();
-        /*  pour réinitialiser les variables après confirmation de la réservation */
+        /*  pour réinitialiser les variables après fermeture de la modale */
        location.reload(); 
     }
 }

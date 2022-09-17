@@ -3,9 +3,9 @@ import Media from "./media.js";
 
 export default class Video extends Media{
     constructor(options, firstName){
-        super(options); /* options de la classe Media (donnée medias) pour la nouvelle instance*/
-        this.video = options.video; /* média vidéo pour la nouvelle instance  */
-        this.firstName = firstName; /* nom du photographe pour la nouvelle instance  */
+        super(options); /* donnée medias */
+        this.video = options.video; /* média intitulé vidéo   */
+        this.firstName = firstName; /* nom du photographe   */
         this.create(); /* création bloc article média contenant la vidéo*/
     }
     create(){

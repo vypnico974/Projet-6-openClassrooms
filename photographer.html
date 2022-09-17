@@ -24,14 +24,19 @@
       <div class="photograph-header">
         <div id="photograph-data"></div>
         <div id="contact-button">
-          <button class="contact_button" id="openModal" aria-label="Contactez Me" 
-          aria-haspopup="dialog" aria-controls="contact_modal" >Contactez-moi</button>
+          <button
+          class="contact_button"
+          id="openModal" 
+          aria-label="ContactezMoi" 
+          aria-haspopup="dialog"
+          aria-controls="contact_modal"
+          >Contactez-moi</button>
         </div>        
         <div id="photograph-picture"></div>
       </div>
 
      <!-- bloc médias du photographe -->
-    <div class="media-section">
+     <div class="media-section">
 
       <!--menu filtre-->
       <div class="menuFilter">
@@ -39,7 +44,11 @@
         <ul id="listFilters" role="listbox" aria-label="Menu de trie">
           <!--premier option de trie-->
           <li id="firstSort" role="option">
-            <button class="listButton" id="btnSortLikes" aria-labelledby="labelTri">Popularité</button>          
+            <button
+            class="listButton"
+            id="btnSortLikes"
+            aria-labelledby="labelTri btnSortLikes"
+            >Popularité</button>          
           </li>
           <li role="option">
             <!-- Flèche bas pour développer les options -->
@@ -55,11 +64,19 @@
           </li>   
           <!--deuxième option de trie-->         
           <li role="option" class="hidden" id="secondSort">
-            <button class="listButton" id="btnSortDate" aria-labelledby="labelTri">Date</button>
+            <button
+            class="listButton"
+            id="btnSortDate"
+            aria-labelledby="labelTri btnSortDate"
+            >Date</button>
           </li>
           <!--troisième option de trie-->
           <li role="option" class="hidden" id="thirdSort">
-            <button class="listButton" id="btnSortTitle" aria-labelledby="labelTri">Titre</button>
+            <button
+            class="listButton"
+            id="btnSortTitle"
+            aria-labelledby="labelTri btnSortTitle"
+            >Titre</button>
           </li>
         </ul>
       </div>
@@ -72,7 +89,7 @@
     <!--Affichage like et prix du photographe-->
     <div id="priceLikes"></div>
     
-    </main>
+  </main>
 
       <!-- lightbox -->
     <div id="lightbox" tabindex="-1" role="dialog" aria-hidden="true"

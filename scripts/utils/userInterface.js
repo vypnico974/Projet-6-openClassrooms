@@ -115,8 +115,6 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
             break;
     }
 
-   // console.log("currentParent:",currentParent);
-
     /*  liste de tri de temporaire */
     temporary = document.getElementById("firstSort").innerHTML;
     document.getElementById("firstSort").innerHTML = document.getElementById(currentParent).innerHTML;
@@ -143,12 +141,6 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
     /* Affichage des cartes dans le bloc médias */
     divMedias.innerHTML = articlesList; 
 
-    /* focus 
-    let titleMediaFocus = document.querySelectorAll("titleMedia");
-    for (const focus of titleMediaFocus ) {
-        document.focus.focus();
-    }  */
-
     /* Gestion de la lightbox sur le lien de chaque média */
      let listMediaLinks = document.querySelectorAll("a.mediaLink");
          lightbox.mediasList = sortedMedias;
@@ -163,7 +155,7 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
          
      for (const link of listMediaLinks) {
          link.addEventListener("click", (e) => {
-            console.log(e);
+           // console.log(e);
             /* récupére l'id du media cliqué stocké dans le dataset
                puis lancer la lighbox  */
             lightbox.launch(e.currentTarget.dataset.id);
@@ -221,11 +213,12 @@ export function displayPrice(medias, price, id){
 export function addLike(){
      /*récupère le nombre de like indiqué à coté du coeur cliqué et
     le stock dans une variable  */
+    
     let current = parseInt(this.firstElementChild.innerText);
     this.firstElementChild.innerText = current + 1;
     let numberLike = this.firstElementChild.innerText;
     /* affichage :nombre de like + icône coeur plein sur l'icône coeur vide  */
-    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeartFas"></i>`;
+    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeart"></i>`;
     /* suppression de l'évènement du click pour ajouter un like */
     this.removeEventListener("click", addLike);
     /* ajout de l'évènement du click pour soustraire un like */
@@ -244,7 +237,7 @@ function removeLike(){
     this.firstElementChild.innerText = current - 1;
     let numberLike = this.firstElementChild.innerText;
     /* affichage nombre de like et suppression du coeur remmpli  */
-    this.firstElementChild.innerHTML= `${numberLike}`;
+    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart far iconHeart"></i>`;;
      /* suppression de l'évènement du click pour soustraire un like */
     this.removeEventListener("click", removeLike);
     /* ajouter de l'évènement du click pour ajouter un like */

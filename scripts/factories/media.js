@@ -1,8 +1,8 @@
 export default class Media{
-    constructor(options){ /*options correspond donnée medias pour la nouvelle instance*/
-        this.title = options.title; /* titre du médias pour la nouvelle instance */
-        this.likes = options.likes; /* nombre de likes média pour la nouvelle instance   */
-        this.id = options.id; /* id du média pour la nouvelle instance   */
+    constructor(options){ /* donnée medias*/
+        this.title = options.title; /* titre du médias */
+        this.likes = options.likes; /* nombre de likes média  */
+        this.id = options.id; /* id du média  */
            }
     /* pour créer le bloc article média contenant soit l'image ou la vidéo par mediaContent */
     create(mediaContent){
@@ -12,9 +12,9 @@ export default class Media{
                             </a>                            
                             <h2 class="titleMedia">${this.title}</h2>
                             <div class="totalLikes" role="button">
-                                <span>${this.likes}</span>
                                 <button aria-label="likes">
-                                    <i class="fa-heart far"></i> 
+                                    <span>${this.likes}</span>
+                                    <i class="fa-heart far iconHeart"></i> 
                                 </button>   
                             </div>
                         </article>`

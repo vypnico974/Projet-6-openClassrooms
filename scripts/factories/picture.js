@@ -3,10 +3,10 @@ import Media from "./media.js";
 
 export default class Picture extends Media{
     constructor(options, firstName){
-        super(options); /* options de la classe Media (donnée medias) pour la nouvelle instance*/
-        this.image = options.image; /* média image pour la nouvelle instance  */
-        this.title = options.title; /* média titre image pour la nouvelle instance   */
-        this.firstName = firstName; /* nom du photographe pour la nouvelle instance  */
+        super(options); /* options donnée medias */
+        this.image = options.image; /* média image   */
+        this.title = options.title; /* média titre  */
+        this.firstName = firstName; /* nom du photographe   */
         this.create(); /* création bloc article média contenant l' image*/
     }
     create(){

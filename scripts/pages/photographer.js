@@ -44,6 +44,10 @@ async function initPage(){
     document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
     document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
 
+     /*écoute évènement clic menu filtre par la flèche  étendre/réduire */
+    document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
+    document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
+
     /*écoute évènement touche entrée clavier(Keycode 13) pour étendre/réduire 
     le menu des filtres  par les flèches haut et bas*/
     document.querySelector("#arrowDown").addEventListener("keyup", (e) =>{
@@ -56,7 +60,7 @@ async function initPage(){
             displayMenuFilters();
         }
     });
-
+                  
     /* écoute évènement clic icône coeurs de chaque cartes  pour incrémenter le nombre
     total de like  */
     let listDivLike = document.querySelectorAll("div.totalLikes");

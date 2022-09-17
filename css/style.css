@@ -29,7 +29,7 @@ h1 {
     margin-right: 100px;
 }
 .logo {
-    height: 50px;
+    height: 2.2rem;
     margin-left: 100px;
 }
 .logo:hover {
@@ -75,8 +75,13 @@ img.portrait {
     font-size: 1em;
     margin-bottom: 5px;
 }
+p.bold{ 
+    font-weight: 600;
+    font-size: 1.2em;
+}
 .photographer_section .boldLight{ 
     font-weight: 200; 
+    color: rgb(117, 117, 117);
 }
 .photographer_section article{
     row-gap: 5px;
@@ -96,10 +101,7 @@ h1.name{
     font-size: 2.5em;
     width: 100%;
 }
-p.bold{ 
-    font-weight: 600;
-    font-size: 1.2em;
-}
+
 
 
 
