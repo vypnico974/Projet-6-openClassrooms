@@ -42,21 +42,19 @@ export function displayHeaderPhotograph(data, idPhotographer){
 }
 
 
-/* paramètres : les medias du photographe, son prénom et le trie selectionné
-ainsi que les lien pour la lightbox */
+/* paramètres : tableau media , prénom ,trie selectionné, lien pour la lightbox */
 export function displayMedia(medias,  firstName, sortBy, lightbox){
     /* bloc pour afficher les médias */
     const divMedias = document.getElementById("medias"); 
     let articlesList = ""; /*code HTML pour les articles medias*/
     let sortedMedias = null; /* tableau pour les médias triés */
-    let temporary = null; /* stockage tempaire pour l'ordre de trie  */
+    let temporary = null; /* stockage temporaire pour l'ordre de trie  */
     let currentParent = null; /* Contiendra l'id de l'élément parent 
     du tri sélectionné pour inverser l'ordre des options */
     
-
     switch (sortBy) {
-        /* Tri décroissant sur les likes du média.
-        IL faut inverser les opérateurs de comparaison pour passer en tri croissant */
+        /* Tri décroissant likes du média.
+        Enverser les opérateurs de comparaison pour passer en tri croissant */
         case "Likes":
             sortedMedias = medias.sort(function(a, b) {
                 if (a.likes < b.likes) {
@@ -70,7 +68,7 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
             currentParent = document.getElementById("btnSortLikes").parentElement.id;
             break;
 
-        /* Tri décroissant sur la date du média */
+        /* Tri décroissant date du média */
         case "Date":
             sortedMedias = medias.sort(function(a, b) {
                 a = new Date(a.date);
@@ -115,7 +113,8 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
             break;
     }
 
-    /*  liste de tri de temporaire */
+    /*   Inversion des boutons premier trie avec
+     le bouton cliqué (second bouton ou troisième bouton)  */
     temporary = document.getElementById("firstSort").innerHTML;
     document.getElementById("firstSort").innerHTML = document.getElementById(currentParent).innerHTML;
     document.getElementById(currentParent).innerHTML = temporary;
@@ -142,12 +141,12 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
     divMedias.innerHTML = articlesList; 
 
     /* Gestion de la lightbox sur le lien de chaque média */
-     let listMediaLinks = document.querySelectorAll("a.mediaLink");
-         lightbox.mediasList = sortedMedias;
+    let listMediaLinks = document.querySelectorAll("a.mediaLink");
+    lightbox.mediasList = sortedMedias;
 
 
-    /* écoute évènement clic icône coeurs de chaque cartes  pour incrémenter le nombre
-    total de like  */
+    /* écoute évènement clic coeur de chaque carte  pour incrémenter le nombre
+     des like de la carte puis de la somme total des likes des cartes */
     let listDivLike = document.querySelectorAll("div.totalLikes");
     for (const like of listDivLike) {
         like.addEventListener("click", addLike);
@@ -183,6 +182,8 @@ export function displayPrice(medias, price, id){
                         </div> 
                         <span>${price}€ / jour</span>`;    
 }
+
+
 /* gestion de l'affichage menu trie  */
  export function displayMenuFilters(){
     /* classList.toggle : dans ce cas, 1 seul argument est présent, donc
@@ -212,13 +213,13 @@ export function displayPrice(medias, price, id){
 /* imcrémenter du nombre de like  */
 export function addLike(){
      /*récupère le nombre de like indiqué à coté du coeur cliqué et
-    le stock dans une variable  */
-    
+    le stock dans une variable  */    
     let current = parseInt(this.firstElementChild.innerText);
     this.firstElementChild.innerText = current + 1;
     let numberLike = this.firstElementChild.innerText;
-    /* affichage :nombre de like + icône coeur plein sur l'icône coeur vide  */
-    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeart"></i>`;
+    /* affichage nombre de like et de l'icône coeur plein  */
+    this.firstElementChild.innerHTML=
+     `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeart" aria-label=""></i>`;
     /* suppression de l'évènement du click pour ajouter un like */
     this.removeEventListener("click", addLike);
     /* ajout de l'évènement du click pour soustraire un like */
@@ -236,8 +237,9 @@ function removeLike(){
     let current = parseInt(this.firstElementChild.innerText);
     this.firstElementChild.innerText = current - 1;
     let numberLike = this.firstElementChild.innerText;
-    /* affichage nombre de like et suppression du coeur remmpli  */
-    this.firstElementChild.innerHTML= `<span class="marginLikes">${numberLike}</span><i class="fa-heart far iconHeart"></i>`;;
+    /* affichage nombre de like et de l'icône coeur  vide  */
+    this.firstElementChild.innerHTML=
+     `<span class="marginLikes">${numberLike}</span><i class="fa-heart far iconHeart" aria-label=""></i>`;
      /* suppression de l'évènement du click pour soustraire un like */
     this.removeEventListener("click", removeLike);
     /* ajouter de l'évènement du click pour ajouter un like */

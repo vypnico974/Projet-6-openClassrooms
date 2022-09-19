@@ -41,22 +41,22 @@ document.getElementById("openModal").addEventListener("click", (e) =>{
 
 /*  modale contact ouverture  */
 function displayModal() {      
-    /* accessibilité modale par la touche echap */
-    modal.focus();     
     /* récupérer le nom dans le titre h1 de la page */
     let firstName = document.querySelector("h1.firstName").innerText;
     /* les champs de saisies du formulaire sont focus */
     const focusElement = document.querySelectorAll("#contact_modal input, #contact_modal textarea, #contact_modal  img, #contact_modal button");
     const firstElement = focusElement[0]; 
     const lastElement = focusElement[(focusElement.length - 1)];
-    closeContactForm.focus();
+    document.getElementById("contact_modal").focus(); 
     modal.style.display = "block";  /* ouverture de la modale  */    
     /* ajout nom photographe dans le titre de la modale */
     document.getElementById("contactMe").innerHTML = "Contactez-moi " + firstName;    
     /* l’ensemble du contenu du document, en dehors de la modale est mise en retrait  */
-    document.getElementById("main").ariaHidden = "true";
+    document.getElementById("body").ariaHidden = "true";
     document.getElementById("contact_modal").ariaHidden = "false";
     body.classList.add("no-scroll");  
+    /*  mettre le focus pour icône fermeture modal */
+    closeContactForm.focus();     
     /* accessibilité gestion de la navigation au clavier avec tab  */
     document.querySelector("#contact_modal").addEventListener("keydown", (e) =>{
         const current = e.target;
@@ -77,7 +77,7 @@ function displayModal() {
                 document.getElementById(lastElement.id).focus();
             }
         }
-         /* ecoute évènement touche espace pour fermeture de la modale sur l'icone croix */
+         /* ecoute évènement touche espace pour fermeture de la modale */
         if((e.target == closeContactForm) && (e.key === ' ')){
             closeModal(e);
         } 
@@ -86,9 +86,9 @@ function displayModal() {
 
 /* fermeture de la modale  */
 function closeModal() {
-    /* bloc main visible, formulaire et lighbox cachés  */
-    modal.style.display = "none";    
-    document.getElementById("main").ariaHidden = "false";
+    modal.style.display = "none"; 
+    /* enleve le retrait pour l'ensemble du document puis retrait du formulaire  */  
+    document.getElementById("body").ariaHidden = "false";
     document.getElementById("contact_modal").ariaHidden = "true";
     body.classList.remove("no-scroll");
     /* accessibilité modale par la touche echap */

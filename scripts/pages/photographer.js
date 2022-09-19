@@ -12,9 +12,7 @@ import {addLike} from "../utils/userInterface.js";
 import Lightbox from "../utils/lightBox.js"
 
 
-async function initPage(){
-
-    
+async function initPage(){    
     /* Id du photographge via l'URL */ 
     let identity = getUrl();
     /* données photographe et médias du photographe(id) */
@@ -24,14 +22,12 @@ async function initPage(){
      const photographer = photographData.filter(photograph => photograph.id == identity);
      /* pour le répertoires des médias  */
      const firstName = photographer[0].name.split(' ')[0];
-     const price = photographer[0].price;
-  
+     const price = photographer[0].price;  
      /* Filtrage des medias */
      const photographerMedias = mediaData.filter(media => media.photographerId == identity)
     /*lightbox*/
     let lightbox = null;
-    lightbox = new Lightbox(photographerMedias, firstName);
-    
+    lightbox = new Lightbox(photographerMedias, firstName);    
     //console.log("les médias :",photographerMedias );
 
      /* affichage en-tête du photographe , ces médias,  like et prix  */
@@ -43,13 +39,11 @@ async function initPage(){
     /*écoute évènement clic menu filtre par la flèche  étendre/réduire */
     document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
     document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
-
      /*écoute évènement clic menu filtre par la flèche  étendre/réduire */
     document.querySelector("#arrowDown").addEventListener("click", displayMenuFilters);
     document.querySelector("#arrowUp").addEventListener("click", displayMenuFilters);
-
     /*écoute évènement touche entrée clavier(Keycode 13) pour étendre/réduire 
-    le menu des filtres  par les flèches haut et bas*/
+    le menu des filtres  par les icônes flèches haut et bas*/
     document.querySelector("#arrowDown").addEventListener("keyup", (e) =>{
         if (e.keyCode == "13"){
             displayMenuFilters();
@@ -59,8 +53,7 @@ async function initPage(){
         if (e.keyCode == "13"){
             displayMenuFilters();
         }
-    });
-                  
+    });                  
     /* écoute évènement clic icône coeurs de chaque cartes  pour incrémenter le nombre
     total de like  */
     let listDivLike = document.querySelectorAll("div.totalLikes");

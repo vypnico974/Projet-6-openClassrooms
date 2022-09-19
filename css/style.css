@@ -1,6 +1,6 @@
 @import url("./photographer.css");
 
-/* règles d'espacement */ 
+/* règles d'espacements pour l' accessibilité*/ 
 *{
  line-height: 1.5 ;
  letter-spacing: 0.12em ;

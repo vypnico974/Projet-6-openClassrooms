@@ -1,20 +1,20 @@
 export default class Lightbox{
-    constructor(mediasList, firstname){
-        this.selectMedia = null; /* médias selectionné  */
-        this.mediasList = mediasList; /* liste des médias du photographe   */
-        this.firstname = firstname; /* nom du photographe  */
+    constructor(mediasList, firstName){
+        this._selectMedia = null; /* médias selectionné  */
+        this._mediaList = mediasList; /* liste des médias du photographe   */
+        this._firstName = firstName; /* nom du photographe  */
         this.events(); /* évènements icônes (flèches et croix) de la lighbox  */
     }
     /* lancer lightbox */
     launch(id){
         /* donnée du média sélectionné par Id */
-        this.selectMedia = this.getId(id);   
+        this._selectMedia = this.getId(id);   
         this.displayMedia(); /* afficher le média */
         document.getElementById("lightbox").focus(); 
     }
      /* Récupérer données du média sélectionné */
      getId(id){
-        return this.mediasList.find(media => media.id == id);
+        return this._mediaList.find(media => media.id == id);
     }
 
 
@@ -77,25 +77,25 @@ export default class Lightbox{
     
     /* media suivant */
     next(){
-        let index = this.mediasList.findIndex(media => media.id == this.selectMedia.id);
-        if (index == this.mediasList.length - 1) {
+        let index = this._mediaList.findIndex(media => media.id == this._selectMedia.id);
+        if (index == this._mediaList.length - 1) {
             /* media actuel  */
-            this.selectMedia = this.mediasList[0]; 
+            this._selectMedia = this._mediaList[0]; 
         } else {
             /* media suivant séléctionné  */
-            this.selectMedia = this.mediasList[index + 1]; 
+            this._selectMedia = this._mediaList[index + 1]; 
         }
         this.displayMedia();
     }
     /* media précédent */
     previous(){
-        let index = this.mediasList.findIndex(media => media.id == this.selectMedia.id);
+        let index = this._mediaList.findIndex(media => media.id == this._selectMedia.id);
         if (index == 0) {
             /* media actuel  */
-            this.selectMedia = this.mediasList[this.mediasList.length - 1];
+            this._selectMedia = this._mediaList[this._mediaList.length - 1];
         } else {
             /* media précédent séléctionné  */
-            this.selectMedia = this.mediasList[index - 1];
+            this._selectMedia = this._mediaList[index - 1];
         }
         this.displayMedia();
     }
@@ -107,18 +107,18 @@ export default class Lightbox{
         /* enlève la classe pour afficher la lighbox */
         document.querySelector("#lightbox").classList.remove("displayMedia");
        /* Focus remis sur le média que l'on vient de quitter depuis le lightbox */
-        document.getElementById(this.selectMedia.id).focus();
+        document.getElementById(this._selectMedia.id).focus();
     }
     /*  afficher media dans la lighbox  */
     displayMedia(){
         let media = ""; /* initialié le média à sélectionné  */
         /* média sélectionné soit format image ou vidéo  */
-        if(this.selectMedia.image){
-            media = `<img src="assets/images/${this.firstname}/${this.selectMedia.image}" alt="${this.selectMedia.title}" class="lightboxMedia">
-                    <p class="mediaTitle">${this.selectMedia.title}</p>`;
-        }else if(this.selectMedia.video){
-            media = `<video controls class="lightboxMedia"><source src="assets/images/${this.firstname}/${this.selectMedia.video}" type="video/mp4"></video>
-                    <p class="mediaTitle">${this.selectMedia.title}</p>`;
+        if(this._selectMedia.image){
+            media = `<img src="assets/images/${this._firstName}/${this._selectMedia.image}" alt="${this._selectMedia.title}" class="lightboxMedia">
+                    <p class="mediaTitle">${this._selectMedia.title}</p>`;
+        }else if(this._selectMedia.video){
+            media = `<video controls class="lightboxMedia"><source src="assets/images/${this._firstName}/${this._selectMedia.video}" type="video/mp4"></video>
+                    <p class="mediaTitle">${this._selectMedia.title}</p>`;
         }
         else{
             throw "format média inconnu";

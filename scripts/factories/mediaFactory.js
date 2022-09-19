@@ -2,14 +2,14 @@
 import Video from "./video.js";
 import Picture from "./picture.js";
 
-/*  adaptateur pour afficher les formats images et videos   */
+/*  instanciation class Picture et Video qui ont hérité de la class média  */
 export default class MediaFactory{
     constructor(media,  firstName){
         if(media.image){ /* format média image  */
             /* création du bloc article média contenant l'image  */
             return new Picture(media, firstName);
         }else if(media.video){  /* format média vidéo  */
-            /* création du bloc article média contenant la vidéi  */
+            /* création du bloc article média contenant la vidéo  */
             return new Video(media, firstName);
         }
         else {
