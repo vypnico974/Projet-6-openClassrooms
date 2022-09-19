@@ -39,6 +39,10 @@ header a:focus-visible{
     background-color: #D3573C;
 }
 
+.modalBground img:hover,.modalBground img:focus{
+    outline: solid 2px #901C1C;   
+}
+
 /***** partie modal *******************/
 #contact_modal {
     display: none;
@@ -71,6 +75,15 @@ header a:focus-visible{
     font-weight: normal;
     margin: 0;
 }
+
+.modalBground img:hover,.modalBground input:hover,
+.modalBground button:hover, .modalBground textarea:hover,  
+.modalBground img:focus,.modalBground input:focus,
+.modalBground button:focus, .modalBground textarea:focus  {
+    outline: solid 2px #901C1C;   
+}
+
+
 form {
     display: flex;
     width: 100%;

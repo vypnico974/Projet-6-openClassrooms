@@ -12,10 +12,12 @@ export default class Media{
                             </a>                            
                             <h2 class="titleMedia">${this._title}</h2>
                             <div class="totalLikes">
-                                <button aria-label="likes">
-                                    <span>${this._likes}</span>
-                                    <i class="fa-heart far iconHeart" aria-label=""></i> 
-                                </button>   
+                                <div id="contentLikes">
+                                    <span class="marginLikes">${this._likes}</span>
+                                    <button aria-label="likes">
+                                    <i class="fa-heart far iconHeart" aria-hidden="true"></i>
+                                    </button>
+                                </div>   
                             </div>
                         </article>`
     }

@@ -135,7 +135,6 @@
             name = "Prénom"
             minlength="2" 
             placeholder="exemple: John"
-            aria-describedby="lettre de l'alphabet"
             aria-labelledby="labelFirst error-first"
             aria-required=true
             required/>
@@ -153,7 +152,6 @@
             name = "Nom"
             minlength="2" 
             placeholder="exemple: Doe"
-            aria-describedby="lettre de l'alphabet"
             aria-labelledby="labelName error-last"
             aria-required=true
             required/>
@@ -170,7 +168,6 @@
             name="Email"
             id="inputEmail"
             placeholder="exemple: john.doe@mail.com"
-            aria-describedby="format email"
             aria-labelledby="labelEmail error-email"
             aria-required=true
             required/>
@@ -187,7 +184,6 @@
             id="inputMessage"
             minlength="10" 
             placeholder="Veuillez écrire votre message."
-            aria-describedby="nombre caractère"
             aria-labelledby="labelMessage error-message"
             aria-required=true
             required></textarea>
@@ -195,7 +191,7 @@
             <label id="error-message" for="inputMessage" class="message-error">
             </label>
           </div>                    
-          <button type="submit" aria-label="Send" aria-describedby="envoyer formulaire de contact" class="contact_button" id="submit">Envoyer</button>
+          <button type="submit" aria-label="Send" class="contact_button" id="submit">Envoyer</button>
         </form>
 			</div>
 		</div>

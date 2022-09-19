@@ -219,7 +219,7 @@ export function addLike(){
     let numberLike = this.firstElementChild.innerText;
     /* affichage nombre de like et de l'icône coeur plein  */
     this.firstElementChild.innerHTML=
-     `<span class="marginLikes">${numberLike}</span><i class="fa-heart fas iconHeart" aria-label=""></i>`;
+     `<span class="marginLikes">${numberLike}</span><button aria-label="likes"><i class="fa-heart fas iconHeart" aria-hidden="true"></i></button>`;
     /* suppression de l'évènement du click pour ajouter un like */
     this.removeEventListener("click", addLike);
     /* ajout de l'évènement du click pour soustraire un like */
@@ -239,7 +239,7 @@ function removeLike(){
     let numberLike = this.firstElementChild.innerText;
     /* affichage nombre de like et de l'icône coeur  vide  */
     this.firstElementChild.innerHTML=
-     `<span class="marginLikes">${numberLike}</span><i class="fa-heart far iconHeart" aria-label=""></i>`;
+     `<span class="marginLikes">${numberLike}</span><button aria-label="likes"><i class="fa-heart far iconHeart" aria-hidden="true"></i></button>`;
      /* suppression de l'évènement du click pour soustraire un like */
     this.removeEventListener("click", removeLike);
     /* ajouter de l'évènement du click pour ajouter un like */
