@@ -1,52 +1,99 @@
-#contact_modal {
-    display: none;
-}
-
+/***  patie en-tête photographe  ****/
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+    min-height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
-
+header a:focus-visible{
+    outline: solid 2px #901C1C;       
+}
+.firstName{
+    font-size: 2.3em;
+    color : #D3573C
+}
+.photograph-header #photograph-data,
+.photograph-header #contact-button{
+    width: 38%;
+}
+.photograph-header #photograph-picture{
+  width: 20%;
+}
 .contact_button {
-    font-size: 20px;
+    font-size: 1em;
     font-weight: bold;
     color: white;
     padding: 11px;
-    width: 170px;
-    height: 70px;
+    min-width: 170px;
+    min-height: 50px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+ }
+ .contact_button:hover,
+ .contact_button:focus-visible{
+    background-color: #D3573C;
 }
 
-.modal {
+.modalBground img:hover,.modalBground img:focus{
+    outline: solid 2px #901C1C;   
+}
+
+/***** partie modal *******************/
+#contact_modal {
+    display: none;
+}
+.modalBground {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    display: none;
+    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    position:absolute;
+    top : 3%;
+    left: 25%;
+    z-index:2
 }
-
-.modal header {
+.modalBground_layout{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color: rgba(117, 117, 117, 0.92);
+    z-index: 1;
+}
+.modalBground header {
     justify-content: space-between;
     width: 100%;
+    height: fit-content;
 }
-
-.modal header img {
+.modalBground header img {
     cursor: pointer;
+    margin-bottom: auto;
+}
+.modalBground header h2 {
+    font-size: 2.6em;
+    font-weight: normal;
+    width: 100%;
+    margin: 0;
 }
 
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+.modalBground img:hover,.modalBground input:hover,
+.modalBground button:hover, .modalBground textarea:hover,  
+.modalBground img:focus,.modalBground input:focus,
+.modalBground button:focus, .modalBground textarea:focus  {
+    outline: solid 2px #901C1C;   
 }
+
 
 form {
     display: flex;
@@ -54,12 +101,10 @@ form {
     flex-direction: column;
     align-items: flex-start;
 }
-
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 1.1em;
 }
-
 form div {
     display: flex;
     flex-direction: column;
@@ -67,10 +112,269 @@ form div {
     align-items: self-start;
     margin-bottom: 26px;
 }
-
 form input {
     width: 100%;
-    height: 68px;
+    min-height: 35px;
     border: none;
     border-radius: 5px;
+    font-size: 1em;
+}
+form textarea.inputMessage {
+    height: 120px;
+    padding-top: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+/* messages d'erreur  */
+.first-error,
+.last-error,
+.email-error,
+.message-error{
+  font-size: 1em;
+  color:black;
+  display: block;
+  margin-bottom: -15px;
+  text-align: left;
+  transition: 0.2s;
+
+}
+/* encadrer erreur et validation  */
+.data-validate{
+    border: 4px solid green;
+}
+.data-error{
+    border: 4px solid #901C1C;
+}
+.no-scroll {
+    overflow: hidden;
+  }
+/**** partie media ************************/
+.media-section{
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+#medias{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 50px;
+    justify-content: space-between;
+    padding-bottom: 70px;
+}
+.contentMedia{
+    width: 346px;
+    height: 346px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.mediaLink:hover{
+    transform: scale(1.08);
+  
+}
+.mediaLink:focus-visible{
+    outline: solid 2px #901C1C;   
+}
+.articleMedia{
+    width: 346px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    row-gap: 15px;
+    height: fit-content;
+}
+/*  menu tri */
+.menuFilter{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    height: fit-content;
+}
+.menuFilter label{
+    font-weight: 700;
+    font-size: 1.1em;
+    padding-top: 10px;
+}
+/* Éléments de la liste de tri */
+ul{
+    list-style-type: none;
+    width: fit-content;
+    margin: 0;
+    background-color: #901C1C;
+    border-radius: 5px;
+    min-width: 150px;
+    padding: 0px 10px;   
+    height: fit-content; 
+    user-select: none;
+    position: relative;
+}
+li{
+    display: block;
+}
+.listButton{
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 1.1em;
+    color: white;
+    padding: 10px;
+    height: 50px;
+    border: none;
+    background-color: #901C1C;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+ul:hover, .listButton:hover,ul:focus, .listButton:focus{
+    background-color: #D3573C;
+}
+span#arrowDown, span#arrowUp{
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+span#arrowDown:hover, span#arrowUp:hover,
+span#arrowDown:focus, span#arrowUp:focus{
+    background-color: #D3573C;
+}
+#arrowDown i, #arrowUp i{
+    cursor: pointer;
+}
+/* pour afficher les 2 lignes blanches du menu */
+#thirdSort, #secondSort {
+    border-top: solid 1px white;
+}
+/* Gestion de l'affichage des éléments (flèches et boutons) */
+.hidden{
+    display: none;
+}
+.visible{
+    display: block;
+}
+.titleMedia{
+    color: #901C1C;
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    align-items: center;  
+    width : 73%;
+}
+.totalLikes{
+    color: #901C1C;
+    font-weight: 600;
+    display: flex;
+    column-gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;   
+}
+.totalLikes button{
+    background-color: white;
+    cursor: pointer;
+    outline: solid 2px white; 
+    border-style: none;
+}
+.totalLikes button:focus-visible{
+    outline: solid 2px #901C1C; 
+    border-style: none;
+    color: 901C1C; 
+}
+
+.totalLikes span{
+    color:#901C1C;
+    font-weight: 600;
+   
+}
+.iconHeart{ /*icône coeur  */
+    position: relative;
+    left: 5px;
+    right: 10px;
+    font-size:1.2em; 
+    color:#901C1C;
+}
+span .marginLikes{
+    position: relative;
+    right:50px     
+}
+
+#priceLikes{ /* cadre total des likes et prix en bas à droite */
+    background-color:#D3573C;
+    position: fixed;
+    bottom: 0;
+    right: 25px;
+    padding: 10px 20px;
+    min-width: 300px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#countLikes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+/*  partie lightbox */
+#lightbox{
+    display: none;
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#lightbox.displayMedia{
+    display: flex;
+}
+#contentLightbox{
+    width: 60%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+#divMediaLightbox{
+    width: 100%;
+    height: 100%;
+}
+#divMediaLightbox img, #divMediaLightbox video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+}
+.lightboxIcon {
+    color: #901C1C;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 55px;
+    width: 35px;
+    padding: 0;
+}
+button.closeLightbox{
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }

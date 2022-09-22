@@ -1,50 +1,108 @@
-@import url("photographer.css");
+@import url("./photographer.css");
+
+/* règles d'espacements pour l' accessibilité*/ 
+*{
+ line-height: 1.5 ;
+ letter-spacing: 0.12em ;
+ word-spacing: 0.16em ;
+}
+p{
+ margin-bottom: 2em;
+} 
 
 body {
     font-family: "DM Sans", sans-serif;
-    margin: 0;
+    max-width: 1900px;
+    margin: auto;
+    box-sizing: border-box;
 }
-
-
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    width: 100%;
 }
-
 h1 {
     color: #901C1C;
     margin-right: 100px;
 }
-
 .logo {
-    height: 50px;
+    height: 2.2rem;
     margin-left: 100px;
 }
-
+.logo:hover {
+    transform: scale(1.08);
+}
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    gap: 90px;
     margin-top: 100px;
 }
-
-.photographer_section article {
+.photographer_section article, .photographer_section article a {
     justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-
+.photographer_section article a:hover {
+    transform: scale(1.08);
+}
+/* Nom du photographe */
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
-
-.photographer_section article img {
+/* portrait photographe  */
+img.portrait {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    overflow: hidden; 
+    margin: auto;
 }
+/*informations supplémentaires photographes */
+.photographer_section article p{
+    margin: 0;
+    font-size: 0.9em;
+}
+.photographer_section a+p{ /* couleur et taille de la localisation    */
+    color: #901C1C;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+p.bold{ 
+    font-weight: 600;
+    font-size: 1.2em;
+}
+.photographer_section .boldLight{ 
+    font-weight: 200; 
+    color: rgb(117, 117, 117);
+}
+.photographer_section article{
+    row-gap: 5px;
+}
+.photographer_section article a {
+    text-decoration: none;
+}
+.photographer_section article a:focus-visible {
+    outline: solid 2px #901C1C;
+    outline-offset: 2px;   
+}
+p.location{
+    color: #901C1C;
+}
+h1.name{
+    color: #D3573C;
+    font-size: 2.5em;
+    width: 100%;
+}
+
+
+
+
+

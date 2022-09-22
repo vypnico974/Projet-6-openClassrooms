@@ -1,37 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+     <!-- icône Favicon -->   
+     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- CSS -->
+    <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="./css/prefix/style.css" rel="stylesheet" type="text/css" />     
+    <!-- google fonts import --> 
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <!-- kit fontawesome pour import d'icône-->
+    <script src="https://kit.fontawesome.com/0b6d538c32.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+  <body id="body">
+    <header >
+      <a href="./index.html">
+        <img src="assets/images/logo.png" class="logo" alt="Page d'acceuil Fisheye"/>
+      </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
+      <!--bloc info et image du photographe ainsi que la modale contact-->
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <div id="photograph-data"></div>
+        <div id="contact-button">
+          <button
+          class="contact_button"
+          id="openModal" 
+          aria-label="ContactezMoi" 
+          aria-haspopup="dialog"
+          aria-controls="contact_modal"
+          >Contactez-moi</button>
+        </div>        
+        <div id="photograph-picture"></div>
       </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
+
+     <!-- bloc médias du photographe -->
+     <div class="media-section">
+
+      <!--menu filtre-->
+      <div class="menuFilter">
+        <label id="labelTri">Trier par</label>
+        <ul id="listFilters" role="listbox" aria-label="Menu de trie">
+          <!--premier option de trie-->
+          <li id="firstSort" role="option">
+            <button
+            class="listButton"
+            id="btnSortLikes"
+            aria-labelledby="labelTri btnSortLikes"
+            >Popularité</button>          
+          </li>
+          <li role="option">
+            <!-- Flèche bas pour développer les options -->
+            <span id="arrowDown" class="visible" aria-label="Flèche bas pour dérouler menu" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+              <!--icône fontawesome flèche bas-->
+              <i class="fa-solid fa-angle-down fa-lg"></i> 
+            </span>
+            <!-- Flèche haut pour réduire les options -->
+            <span id="arrowUp" class="hidden" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="true">
+              <!--icône fontawesome flèche haut-->
+              <i class="fa-solid fa-angle-up fa-lg"></i>
+            </span>
+          </li>   
+          <!--deuxième option de trie-->         
+          <li role="option" class="hidden" id="secondSort">
+            <button
+            class="listButton"
+            id="btnSortDate"
+            aria-labelledby="labelTri btnSortDate"
+            >Date</button>
+          </li>
+          <!--troisième option de trie-->
+          <li role="option" class="hidden" id="thirdSort">
+            <button
+            class="listButton"
+            id="btnSortTitle"
+            aria-labelledby="labelTri btnSortTitle"
+            >Titre</button>
+          </li>
+        </ul>
+      </div>
+
+      <!--Affichage des médias du photographe-->
+      <div id="medias"></div>  
+
+    </div>
+
+    <!--Affichage like et prix du photographe-->
+    <div id="priceLikes"></div>
+    
+  </main>
+
+      <!-- lightbox -->
+    <div id="lightbox" tabindex="-1" role="dialog" aria-hidden="true"
+          aria-modal="true" aria-label="image closeup view">
+      <div id="contentLightbox">
+        <button class="previousMedia lightboxIcon" id="previousMedia"
+         aria-label="previous image">
+            <i class="fa-solid fa-angle-left fa-4x"></i>
+        </button>
+        <div id="divMediaLightbox"></div>
+        <button class="nextMedia lightboxIcon" id="nextMedia" 
+         aria-label="next image">
+           <i class="fa-solid fa-angle-right fa-4x"></i>
+        </button>
+        <button class="closeLightbox lightboxIcon" id="closeLightbox"
+         aria-label="close dialog">
+           <i class="fa-solid fa-xmark fa-4x"></i>
+        </button>
+      </div>
+    </div>
+
+
+     <!-- Modale du formulaire -->
+    <div id="contact_modal" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
+			<div class="modalBground">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="contactMe">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" id="closeContactForm" aria-label="Close Contact form" tabindex="0" alt="Bouton fermeture formulaire"/>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+				<form
+          id="contact_form"
+          action="#"
+          method="post"
+          aria-hidden="true" 
+          >
+					<div class="formField" id="divFirstName">
+						<label for="inputFirstname" aria-label="Prénom" id="labelFirst">Prénom</label>
+            <input 
+            aria-invalid="true"
+            aria-label="first name"
+            type="text" 
+            id="inputFirstname" 
+            name = "Prénom"
+            minlength="2" 
+            placeholder="exemple: John"
+            aria-labelledby="labelFirst error-first"
+            aria-required=true
+            required/>
+            <!--affichage message d'erreur-->
+            <span id="error-first" class="first-error">
+            </span>         
 					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
+          <div class="formField" id="divLastName">
+            <label for="inputLastname" aria-label="Nom" id="labelName">Nom</label>
+            <input
+            aria-invalid="true"
+            aria-label="Last name"
+            type="text" 
+            id="inputLastname"
+            name = "Nom"
+            minlength="2" 
+            placeholder="exemple: Doe"
+            aria-labelledby="labelName error-last"
+            aria-required=true
+            required/>
+            <!--affichage message d'erreur-->
+            <span id="error-last" class="last-error">
+            </span>
+          </div>       
+          <div class="formField" id="divEmail">
+            <label for="inputEmail" aria-label="Email" id="labelEmail">Email</label>
+            <input 
+            aria-invalid="true"
+            aria-label="Email" 
+            type="email" 
+            name="Email"
+            id="inputEmail"
+            placeholder="exemple: john.doe@mail.com"
+            aria-labelledby="labelEmail error-email"
+            aria-required=true
+            required/>
+            <!--affichage message d'erreur-->
+            <span id="error-email" class="email-error">
+            </span>
+          </div>
+          <div class="formField" id="divMessage">
+            <label for="inputMessage" aria-label="Message" id="labelMessage">Votre Message</label>
+            <textarea class="inputMessage" 
+            aria-invalid="true"
+            aria-label="Your message"
+            name="Message"
+            id="inputMessage"
+            minlength="10" 
+            placeholder="Veuillez écrire votre message."
+            aria-labelledby="labelMessage error-message"
+            aria-required=true
+            required></textarea>
+            <!--affichage message d'erreur-->
+            <span id="error-message" class="message-error">
+            </span>
+          </div>                    
+          <button type="submit" aria-label="Envoyer" class="contact_button" id="submit">Envoyer</button>
+        </form>       
+			</div> 
+      <!--affichage un arrière plan gris à l'ouverture de la modale formulaire-->
+      <div class="modalBground_layout"></div>     
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="./scripts/pages/photographer.js" type="module"></script>
+    <script src="/scripts/utils/contactForm.js" type="module"></script>
   </body>
 </html>
