@@ -1,7 +1,7 @@
 {
   "name": "projet-6-openclassrooms",
   "version": "1.0.0",
-  "description": "## Démarrer le projet",
+  "description": "Projet 6 Fisheye OpenClassroom - Parcours Front-end OpenClassroom",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

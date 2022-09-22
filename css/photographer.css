@@ -60,6 +60,16 @@ header a:focus-visible{
     position:absolute;
     top : 3%;
     left: 25%;
+    z-index:2
+}
+.modalBground_layout{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color: rgba(117, 117, 117, 0.92);
+    z-index: 1;
 }
 .modalBground header {
     justify-content: space-between;
@@ -71,8 +81,9 @@ header a:focus-visible{
     margin-bottom: auto;
 }
 .modalBground header h2 {
-    font-size: 2.4em;
+    font-size: 2.6em;
     font-weight: normal;
+    width: 100%;
     margin: 0;
 }
 
@@ -106,11 +117,13 @@ form input {
     min-height: 35px;
     border: none;
     border-radius: 5px;
+    font-size: 1em;
 }
 form textarea.inputMessage {
     height: 120px;
     padding-top: 10px;
     width: 100%;
+    font-size: 1em;
 }
 /* messages d'erreur  */
 .first-error,

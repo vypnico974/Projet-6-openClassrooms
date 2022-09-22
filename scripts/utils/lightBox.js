@@ -7,12 +7,12 @@ export default class Lightbox{
     }
     /* lancer lightbox */
     launch(id){
-        /* donnée du média sélectionné par Id */
+        /* donnée média sélectionné par Id */
         this._selectMedia = this.getId(id);   
         this.displayMedia(); /* afficher le média */
         document.getElementById("lightbox").focus(); 
     }
-     /* Récupérer données du média sélectionné */
+     /* Récupérer données média sélectionné */
      getId(id){
         return this._mediaList.find(media => media.id == id);
     }

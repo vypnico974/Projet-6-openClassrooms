@@ -7,12 +7,12 @@ export default class Media{
     /* pour créer le bloc article média contenant soit l'image ou la vidéo par mediaContent */
     create(mediaContent){
         this.article = `<article class="articleMedia">
-                            <a href="#" title="${this._title}, closeup view " data-id="${this._id}" id="${this._id}" class="mediaLink" role="button" aria-haspopup="dialog" aria-controls="lightbox">
+                            <a href="#" title="${this._title}, vue agrandie" data-id="${this._id}" id="${this._id}" class="mediaLink" role="button" aria-haspopup="dialog" aria-controls="lightbox">
                              ${mediaContent}
                             </a>                            
                             <h2 class="titleMedia">${this._title}</h2>
                             <div class="totalLikes">
-                                <div id="contentLikes">
+                                <div class="contentLikes">
                                     <span class="marginLikes">${this._likes}</span>
                                     <button aria-label="likes">
                                     <i class="fa-heart far iconHeart" aria-hidden="true"></i>

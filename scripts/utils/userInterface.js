@@ -54,7 +54,7 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
     
     switch (sortBy) {
         /* Tri décroissant likes du média.
-        Enverser les opérateurs de comparaison pour passer en tri croissant */
+        Inverser les opérateurs de comparaison pour passer en tri croissant */
         case "Likes":
             sortedMedias = medias.sort(function(a, b) {
                 if (a.likes < b.likes) {
@@ -151,15 +151,13 @@ export function displayMedia(medias,  firstName, sortBy, lightbox){
     for (const like of listDivLike) {
         like.addEventListener("click", addLike);
     } 
-         
-     for (const link of listMediaLinks) {
-         link.addEventListener("click", (e) => {
-           // console.log(e);
+    for (const link of listMediaLinks) {
+        link.addEventListener("click", (e) => {
             /* récupére l'id du media cliqué stocké dans le dataset
-               puis lancer la lighbox  */
+            puis lancer la lighbox  */
             lightbox.launch(e.currentTarget.dataset.id);
-         });
-     }
+        });
+    }
 
 }
 
