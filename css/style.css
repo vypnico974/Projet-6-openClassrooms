@@ -64,6 +64,7 @@ img.portrait {
     border-radius: 50%;
     overflow: hidden; 
     margin: auto;
+    object-fit: cover; /* Le contenu remplacé est dimensionné pour maintenir son ratio d'affichage */
 }
 /*informations supplémentaires photographes */
 .photographer_section article p{
